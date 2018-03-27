@@ -30,6 +30,14 @@ public class HomeController {
 	}
 	
 	
+	/* test by sungbin */
+	@RequestMapping(value="sungbin", method=RequestMethod.GET)
+	public void sungbin(){
+		logger.info("sungbin");
+		logger.info("sungbinsungbin");
+	}
+	
+	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
