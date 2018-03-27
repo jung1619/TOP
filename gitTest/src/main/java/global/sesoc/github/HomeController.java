@@ -44,4 +44,8 @@ public class HomeController {
 		return "home";
 	}
 	
+	public void test1(){
+		String test = "test";
+	}
+	
 }
