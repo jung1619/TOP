@@ -21,9 +21,4 @@ team leader test da
 updata
 updata
 
-<h2>uj!!!!!!!!!!!!!!!!!!!</h2>
-<b>!!!!!!!!!다른조원도 되야한다!!!!!!!!!!</b>
-
-
-</body>
-</html>
+<h2>uj^^^^</h2>
