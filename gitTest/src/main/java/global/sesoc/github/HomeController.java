@@ -19,6 +19,14 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	
+	/* test by uj */
+	@RequestMapping(value="uj", method=RequestMethod.GET)
+	public void uj(){
+		logger.info("ujuj");
+	}
+	
+	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
