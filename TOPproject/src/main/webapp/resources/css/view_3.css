@@ -1,0 +1,69 @@
+@CHARSET "UTF-8";
+
+body{
+	padding: 0;
+	margin: 0;
+}
+
+.outer{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+
+
+/* 에디터 */
+
+.outer_editor{
+	background-color: #ff8080;
+	width: 80%;
+	height: 100%;
+	float: left;
+}
+
+.editor_menubar{
+	background-color: #ff8040;
+}
+
+
+/* 채팅 부분 */
+
+.outer_chat{
+	background-color: #ff80c0;
+	width: 20%;
+	height: 100%;
+	float: left;
+}
+
+.notice{
+	background-color: #800080;
+}
+
+.notice_content{
+	background-color: #0080ff;
+}
+
+.notice_btn{
+	background-color: #ffff80;
+	text-align: right;
+}
+
+.chatLogView{
+	background-color: #80ff00;
+	height: 70%;
+}
+
+
+.outer_chatEditor{
+	background-color: #c0c0c0;
+	height: 20%;
+}
+
+.chatEditor_menubar{
+	background-color: #000080;
+}
+
+.chatEditor_textView{
+	background-color: #008080;
+}
