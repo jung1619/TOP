@@ -36,4 +36,10 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/group", method = RequestMethod.GET)
+	public String group(Locale locale, Model model) {
+		
+		return "group";
+	}
+	
 }
