@@ -36,10 +36,23 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value = "/group", method = RequestMethod.GET)
-	public String group(Locale locale, Model model) {
+	@RequestMapping(value = "group", method = RequestMethod.GET)
+	public String group() {
 		
 		return "group";
 	}
 	
-}
+	@RequestMapping(value = "join", method = RequestMethod.GET)
+	public String join() {
+		
+		return "join";
+	}
+	
+	@RequestMapping(value = "/view_3", method = RequestMethod.GET)
+	public String view_3() {
+		
+		return "view_3";
+	}
+	
+	
+}//class
