@@ -50,7 +50,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/view_3", method = RequestMethod.GET)
 	public String view_3() {
-		
+		 
 		return "view_3";
 	}
 	
