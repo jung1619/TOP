@@ -1,4 +1,4 @@
-DROP TABLE top_user;
+DROP TABLE top_user; 
 DROP TABLE friend_list;
 DROP TABLE top_project;
 DROP TABLE notice;

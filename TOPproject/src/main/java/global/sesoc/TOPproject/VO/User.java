@@ -1,5 +1,5 @@
 package global.sesoc.TOPproject.VO;
-
+ 
 public class User {
 	
 	private String id;
