@@ -23,7 +23,6 @@ import global.sesoc.TOPproject.VO.User;
  
 /**
  * Handles requests for the application home page.
- * 커밋
  */
 @Controller
 public class HomeController {
