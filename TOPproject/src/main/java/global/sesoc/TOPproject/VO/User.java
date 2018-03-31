@@ -11,7 +11,6 @@ public class User {
 	
 	public User(){}
 	public User(String id, String pw, String email, String name, String nickname, String company) {
-		super();
 		this.id = id;
 		this.pw = pw;
 		this.email = email;
@@ -57,6 +56,10 @@ public class User {
 		this.company = company;
 	}
 	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", pw=" + pw + ", email=" + email + ", name=" + name + ", nickname=" + nickname
+				+ ", company=" + company + "]";
+	}
 	
-
 }

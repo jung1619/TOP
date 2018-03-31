@@ -152,7 +152,7 @@ $(document).ready(function(){
 				$('#UserNameCheckDiv').html(data);
 			}
 			, error:function(err){
-				console.log("에러발생")
+				console.log("에러발생");
 			}
 		})
 		
@@ -178,7 +178,7 @@ $(document).ready(function(){
 				
 			}
 			,error:function(err){
-				console.log("에러발생")
+				console.log("에러발생");
 			}
 			
 		});

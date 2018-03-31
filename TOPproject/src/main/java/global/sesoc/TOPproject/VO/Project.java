@@ -10,13 +10,10 @@ public class Project {
 	private String p_deldate;
 	
 	public Project(){}
-	public Project(int p_num, String p_m_id, String p_name, String p_memberlist, String p_indate, String p_deldate) {
-		super();
-		this.p_num = p_num;
+	public Project(String p_m_id, String p_name, String p_memberlist, String p_deldate) {
 		this.p_m_id = p_m_id;
 		this.p_name = p_name;
 		this.p_memberlist = p_memberlist;
-		this.p_indate = p_indate;
 		this.p_deldate = p_deldate;
 	}
 	
@@ -57,6 +54,10 @@ public class Project {
 		this.p_deldate = p_deldate;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Project [p_num=" + p_num + ", p_m_id=" + p_m_id + ", p_name=" + p_name + ", p_memberlist="
+				+ p_memberlist + ", p_indate=" + p_indate + ", p_deldate=" + p_deldate + "]";
+	}
 	
 }

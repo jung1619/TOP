@@ -6,19 +6,97 @@
   <mapper namespace="global.sesoc.TOPproject.DAO.UserMapperInterface">
   
   
+  <!-- U P D A T E -->
+  
+  <update id="updateUser" parameterType="User">
+  	UPDATE top_user
+  	SET pw = #{pw}, email = #{email}, name = #{name}
+  		<if test="nickname != null"> ,nickname = #{nickname} </if>
+	  	<if test="company != null"> ,company = #{company} </if>
+  	WHERE id = #{id}
+  </update>
+  
+    
+  <update id="updateFriendList" parameterType="map">
+  	UPDATE friend_list
+  	SET fl = #{fl}
+  	WHERE id = #{id}
+  </update>
+  
+  
+  <update id="updateUserSchedule" parameterType="Schedule">
+  	UPDATE schedule_user
+  	SET start_date = #{start_date}, end_date = #{end_date}, content = #{content}
+  		<if test="color != null">
+  			,color = #{color}
+  		</if>
+  	WHERE id = #{id}
+  </update>
+  
+  
+  <update id="updateUserMemo" parameterType="Memo">
+  	UPDATE memo
+  	SET n_content = #{n_content}
+  	WHERE id = #{id}
+  </update>
+  
+  
+  <!-- S E L E C T -->
+  
+  
+  
+  <!-- I N S E R T -->
+  
   <insert id="insertUser" parameterType="User">
-	  insert into top_user(
-	  	id, pw, email, name
-	  		<if test="">
-	  			,nickname, company
-	  		</if> 
-	  )values(
+	  INSERT INTO top_user(
+	  	id, pw, email, name, nickname
+	  		<if test="company != null"> ,company </if> 
+	  )VALUES(
 	  	#{id}, #{pw}, #{email}, #{name}
-	  		<if test="">
-	  			,#{nickname}, #{company}
-	  		</if>
+	  		<choose>
+	  			<when test="nickname == null"> ,#{name} </when>
+	  			<otherwise> ,#{nickname} </otherwise>
+	  		</choose>
+	  		<if test="company != null"> ,#{company} </if>
 	  )
   </insert>
+  
+  
+  <insert id="insertFriendList" parameterType="map">
+  	INSERT INTO friend_list(
+  		id, fl
+  	)VALUES(
+  		#{id}, #{fl}
+  	)
+  </insert>
+  
+  
+  <insert id="insertUserSchedule" parameterType="Schedule">
+  	INSERT INTO schedule_user(
+  		id, start_date, end_date, content
+  	)VALUES(
+  		#{id}, #{start_date}, #{end_date}, #{content} 
+  	)
+  </insert>
+  
+  
+  <insert id="insertUserMemo" parameterType="Memo">
+  	INSERT INTO memo(
+  		id, n_content
+  	)VALUES(
+  		#{id}, #{n_content}
+  	)
+  </insert>
+  
+  
+  <!-- D E L E T E -->
+  
+  <update id="deleteUserMemo" parameterType="Memo">
+  	UPDATE memo
+  	SET n_deldate = SYSDATE
+  	WHERE id = #{id}
+  </update>
+  
   
   
   </mapper>

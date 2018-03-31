@@ -1,9 +1,23 @@
 package global.sesoc.TOPproject.DAO;
  
+import java.util.HashMap;
+
+import global.sesoc.TOPproject.VO.Memo;
+import global.sesoc.TOPproject.VO.Schedule;
 import global.sesoc.TOPproject.VO.User;
 
 public interface UserMapperInterface {
 
-	public void insertUser(User user);
+	public int insertUser(User user);
+	public void insertFriendList(HashMap<String, String> map);
+	public int insertUserSchedule(Schedule schedule);
+	public int insertUserMemo(Memo memo);
+	
+	public int updateUser(User user);
+	public int updateFriendList(HashMap<String, String> map);
+	public int updateUserSchedule(Schedule schedule);
+	public int updateUserMemo(Memo memo);
+	
+	public int deleteUserMemo(Memo memo);
 	
 }

@@ -5,14 +5,74 @@
    
   <mapper namespace="global.sesoc.TOPproject.DAO.ProjectMapperInterface">
   
+  
+  <!-- U P D A T E -->
+  
+  <update id="updateProject" parameterType="Project">
+  	UPDATE top_project
+  	SET p_name = #{p_name}, p_memberlist = #{p_memberlist}
+  	WHERE p_num = #{p_num} AND p_m_id = #{p_m_id}
+  </update>
+  
+  
+  <update id="updateProjectSchedule" parameterType="Schedule">
+  	UPDATE schedule_project
+  	SET start_date = #{start_date}, end_date = #{end_date}, content = #{content}
+  		<if test="color != null">
+  			,color = #{color}
+  		</if>
+  	WHERE p_num = #{p_num}
+  </update>
+  
+  
+  <update id="updateProjectNotice" parameterType="Memo">
+  	UPDATE notice
+  	SET n_content = #{n_content}
+  	WHERE p_num = #{p_num}
+  </update>
+  
+  
+  <!-- S E L E C T -->
+  
+  
+  
+  <!-- I N S E R T -->
  
   <insert id="insertProject" parameterType="Project">
-	  insert into top_project(
-	  	p_num, p_m_id, p_name, p_memberlist, p_indate, p_deldate
-	  )values(
-	  	#{p_num}, #{p_m_id}, #{p_name}, #{p_memberlist}, #{p_indate}, #{p_deldate} 
-	  )
+	INSERT INTO top_project(
+	  p_num, p_m_id, p_name, p_memberlist
+	)values(
+	  p_num_seq.NEXTVAL, #{p_m_id}, #{p_name}, #{p_memberlist} 
+	)
   </insert>
+  
+  
+  <insert id="insertProjectSchedule" parameterType="Schedule">
+  	INSERT INTO schedule_project(
+  		p_num, start_date, end_date, content
+  	)values(
+  		#{p_num}, #{start_date}, #{end_date}, #{content} 
+  	)
+  </insert>
+  
+  
+  <insert id="insertProjectNotice" parameterType="Memo">
+  	INSERT INTO notice(
+  		p_num, n_content
+  	)VALUES(
+  		#{p_num}, #{n_content}
+  	)
+  </insert>
+  
+  
+  <!-- D E L E T E -->
+  
+  <update id="deleteProjectNotice" parameterType="Memo">
+  	UPDATE notice
+  	SET n_deldate = SYSDATE
+  	WHERE p_num = #{p_num}
+  </update>
+  
   
   
   </mapper>
