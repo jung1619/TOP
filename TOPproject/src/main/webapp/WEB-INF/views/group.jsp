@@ -189,7 +189,7 @@ body {
 
 <div class="one">
 	<div class="two">
-		<span class="center">회의하기</span>
+		<span class="center"><a href="view_3">회의하기</a></span>
 	</div>
 	<div class="groupName">
 		<span class="center"> TOP <br> Take of Project </span>

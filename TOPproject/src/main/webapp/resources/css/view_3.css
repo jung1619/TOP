@@ -31,29 +31,37 @@ body{
 	width: 20%;
 	height: 100%;
 	float: left;
+	background : #F0F8FF;
 }
 
 .notice{
+	background : #FAEBD7;
 }
 
 .notice_content{
+	background : #00FFFF;
 }
 
 .notice_btn{
 	text-align: right;
+	background :#7FFFD4
 }
 
 .chatLogView{
 	height: 70%;
+	background :#DEB887;
 }
 
 
 .outer_chatEditor{
 	height: 20%;
+	background :#6495ED;
 }
 
 .chatEditor_menubar{
+	background :#A9A9A9;
 }
 
 .chatEditor_textView{
+	background :#00BFFF;
 }
