@@ -200,9 +200,13 @@ body {
 <body>
 
 	<div class="top">
-		<span class="topspan1">TOP </span><span class="topspan2"> SMART
-			GROUPWARE</span> <span class="join"> <a href="join">JOIN</a> <a
-			href="login">LOG IN</a><br>
+		<span class="topspan1">TOP </span>
+		<span class="topspan2"> SMARTGROUPWARE</span>
+	    <span class="join"> 
+	    <input type="text" id="loginID" placeholder="ID">
+	    <input type="text" id="loginPW" placeholder="PW">
+	    <input type="button" value="login" id="loginBtn">
+	    <a href="join">JOIN</a> 
 		</span>
 	</div>
 
