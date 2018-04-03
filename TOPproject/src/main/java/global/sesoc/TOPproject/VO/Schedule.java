@@ -4,23 +4,24 @@ public class Schedule {
 
 	private String id;
 	private int p_num;
-	private String start_date;
-	private String end_date;
+	private String startdate;
+	private String enddate;
 	private String content;
 	private String color;
+	private String deldate;
 	
 	public Schedule(){}
 	public Schedule(String id, String start_date, String end_date, String content, String color) {
 		this.id = id;
-		this.start_date = start_date;
-		this.end_date = end_date;
+		this.startdate = start_date;
+		this.enddate = end_date;
 		this.content = content;
 		this.color = color;
 	}
 	public Schedule(int p_num, String start_date, String end_date, String content, String color) {
 		this.p_num = p_num;
-		this.start_date = start_date;
-		this.end_date = end_date;
+		this.startdate = start_date;
+		this.enddate = end_date;
 		this.content = content;
 		this.color = color;
 	}
@@ -37,17 +38,17 @@ public class Schedule {
 	public void setP_num(int p_num) {
 		this.p_num = p_num;
 	}
-	public String getStart_date() {
-		return start_date;
+	public String getStartdate() {
+		return startdate;
 	}
-	public void setStart_date(String start_date) {
-		this.start_date = start_date;
+	public void setStartdate(String startdate) {
+		this.startdate = startdate;
 	}
-	public String getEnd_date() {
-		return end_date;
+	public String getEnddate() {
+		return enddate;
 	}
-	public void setEnd_date(String end_date) {
-		this.end_date = end_date;
+	public void setEnddate(String enddate) {
+		this.enddate = enddate;
 	}
 	public String getContent() {
 		return content;
@@ -61,11 +62,17 @@ public class Schedule {
 	public void setColor(String color) {
 		this.color = color;
 	}
+	public String getDeldate() {
+		return deldate;
+	}
+	public void setDeldate(String deldate) {
+		this.deldate = deldate;
+	}
 	
 	@Override
 	public String toString() {
-		return "Schedule [id=" + id + ", p_num=" + p_num + ", start_date=" + start_date + ", end_date=" + end_date
-				+ ", content=" + content + ", color=" + color + "]";
+		return "Schedule [id=" + id + ", p_num=" + p_num + ", startdate=" + startdate + ", enddate=" + enddate
+				+ ", content=" + content + ", color=" + color + ", deldate=" + deldate + "]";
 	}
 	
 }

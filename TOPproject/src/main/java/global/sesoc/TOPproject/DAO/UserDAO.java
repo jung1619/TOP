@@ -76,6 +76,25 @@ public class UserDAO {
 	}
 	
 	
+	
+	// S E L E C T ------------------------------------------------------------------
+	
+	
+	public User searchUser(String id){
+		logger.info("회원 검색 : " + id);
+		
+		UserMapperInterface mapper = sqls.getMapper(UserMapperInterface.class);
+		User user = null;
+		
+		try{
+			user = mapper.searchUser(id);
+			logger.info("회원 검색 성공 : " + user);
+		}catch(Exception e){ logger.info("회원 검색 실패"); e.printStackTrace(); }
+		
+		return user;
+	}
+	
+	
 	// U P D A T E ------------------------------------------------------------------
 	
 	

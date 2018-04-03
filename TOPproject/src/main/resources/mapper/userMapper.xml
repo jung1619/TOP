@@ -43,6 +43,11 @@
   
   <!-- S E L E C T -->
   
+  <select id="searchUser" parameterType="map" resultType="User">
+  	SELECT id, pw, email, name, nickname, company
+  	FROM top_user
+  	WHERE id = #{id}
+  </select>
   
   
   <!-- I N S E R T -->

@@ -207,7 +207,7 @@ body {
 	<table class="threeTable">
 		<tr>
 			<th class="th0">공지</th>
-			<td><a href="Notice">작성</a></td>
+			<td></td>
 		</tr>
 		<tr>
 			<th class="th1">다음 회의는 4월 3일 코엑스</th>

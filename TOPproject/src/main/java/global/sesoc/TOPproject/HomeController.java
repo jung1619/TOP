@@ -36,6 +36,12 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "home", method = RequestMethod.GET)
+	public String gohome() {
+		
+		return "home";
+	}
+	
 	@RequestMapping(value = "group", method = RequestMethod.GET)
 	public String group() {
 		
@@ -58,68 +64,6 @@ public class HomeController {
 	public String NoticePage(){
 		return "notice";
 	}
-	
-	
-	// T E S T -----------------------------------------------------------
-	
-	@Inject
-	UserDAO uDao;
-	@Inject
-	ProjectDAO pDao;
-	
-	@RequestMapping(value="test", method = RequestMethod.GET)
-	public void test(){
-		/*
-		Project p = new Project();
-		p.setP_m_id("test_id"); p.setP_name("테스트 프로젝트"); p.setP_memberlist("test_id/t1/t2/t3");
-		Schedule ps = new Schedule();
-		ps.setP_num(1); ps.setStart_date("18/3/31"); ps.setEnd_date("18/4/5"); ps.setContent("test입니다_그룹스케쥴"); 
-		Memo pm = new Memo();
-		pm.setP_num(1); pm.setN_content("test입니다_공지");
-		
-		pDao.insertProject(p);
-		pDao.insertProjectSchedule(ps);
-		pDao.insertProjectNotice(pm);
-	
-		User u = new User();
-		u.setId("test_id"); u.setPw("test"); u.setEmail("test@test.com"); u.setName("테스트");
-		Schedule us = new Schedule();
-		us.setId("test_id"); us.setStart_date("18/3/31"); us.setEnd_date("18/4/5"); us.setContent("test입니다_개인스케쥴");
-		Memo um = new Memo();
-		um.setId("test_id"); um.setN_content("test입니다_메모");
-		
-		uDao.insertUser(u);
-		uDao.insertUserSchedule(us);
-		uDao.insertUserMemo(um);
-		*/
-		
-		
-		Project p = new Project();
-		p.setP_num(1); p.setP_m_id("test_id"); p.setP_name("테스트 프로젝트2"); p.setP_memberlist("test_id/t1/t2/t3/t4/t5/t6");
-		Schedule ps = new Schedule();
-		ps.setP_num(1); ps.setStart_date("01/3/31"); ps.setEnd_date("01/4/5"); ps.setContent("test입니다_그룹스케쥴2"); 
-		Memo pm = new Memo();
-		pm.setP_num(1); pm.setN_content("test입니다_공지2");
-		
-		pDao.updateProject(p);
-		pDao.updateProjectSchedule(ps);
-		pDao.updateProjectNotice(pm);
-		
-		User u = new User();
-		u.setId("test_id"); u.setPw("test"); u.setEmail("test2@test.com"); u.setName("테스트2");
-		Schedule us = new Schedule();
-		us.setId("test_id"); us.setStart_date("01/3/31"); us.setEnd_date("01/4/5"); us.setContent("test입니다_개인스케쥴2");
-		Memo um = new Memo();
-		um.setId("test_id"); um.setN_content("test입니다_메모2");
-		
-		uDao.updateUser(u);
-		uDao.updateUserSchedule(us);
-		uDao.updateUserMemo(um);
-		uDao.updateFriendList("test_id", "t1/t2");
-		
-	}
-	
-	
 	
 	
 	

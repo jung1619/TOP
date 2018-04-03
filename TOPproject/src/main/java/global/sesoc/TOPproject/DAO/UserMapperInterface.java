@@ -13,6 +13,8 @@ public interface UserMapperInterface {
 	public int insertUserSchedule(Schedule schedule);
 	public int insertUserMemo(Memo memo);
 	
+	public User searchUser(String id);
+	
 	public int updateUser(User user);
 	public int updateFriendList(HashMap<String, String> map);
 	public int updateUserSchedule(Schedule schedule);

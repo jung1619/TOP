@@ -8,6 +8,7 @@ public class User {
 	private String name;
 	private String nickname;
 	private String company;
+	private String leavedate;
 	
 	public User(){}
 	public User(String id, String pw, String email, String name, String nickname, String company) {
@@ -55,11 +56,17 @@ public class User {
 	public void setCompany(String company) {
 		this.company = company;
 	}
+	public String getLeavedate() {
+		return leavedate;
+	}
+	public void setLeavedate(String leavedate) {
+		this.leavedate = leavedate;
+	}
 	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", pw=" + pw + ", email=" + email + ", name=" + name + ", nickname=" + nickname
-				+ ", company=" + company + "]";
+				+ ", company=" + company + ", leavedate=" + leavedate + "]";
 	}
 	
 }

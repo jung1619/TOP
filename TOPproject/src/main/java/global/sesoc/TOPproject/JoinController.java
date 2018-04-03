@@ -1,5 +1,7 @@
 package global.sesoc.TOPproject;
 
+import javax.inject.Inject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -7,38 +9,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import global.sesoc.TOPproject.DAO.UserDAO;
+import global.sesoc.TOPproject.VO.User;
+
 @Controller
 public class JoinController {
 	
 	private final static Logger logger= LoggerFactory.getLogger(JoinController.class);
 	
+
+	@Inject
+	UserDAO userDao;
 	
 	
-	// ajax로 유저이름 체크
-	@RequestMapping(value="UserNameCheck",method=RequestMethod.GET)
 	@ResponseBody
-	public String userNameCheck(String username){
-		String result="result";
+	@RequestMapping(value="CheckIdEmail",method=RequestMethod.POST)
+	public String userNameCheck(String idEmail){
+		logger.info("idEmail : "+ idEmail);
 		
-		logger.info("username"+username);
-	
-		System.out.println("입력된 username : "+username);
-				
-		return result;
-	}
-	
-	// ajax로 email 체크
-	@RequestMapping(value="emailCheck",method=RequestMethod.GET)
-	@ResponseBody
-	public String emailCheck(String email){
-		String result = "result";
+		User user = userDao.searchUser(idEmail);
 		
-		logger.info("email:"+email);
-		
-		return result;
-		
+		if( user != null ) return "1";
+		else return "2";
 	}
 	
 	
+	@ResponseBody
+	@RequestMapping(value="join", method=RequestMethod.POST)
+	public String join(User user){
+		logger.info("회원 가입 시도 : " + user);
+		
+		int result = userDao.insertUser(user);
+		
+		return "home";
+	}
 	
-}
+	
+}//class
