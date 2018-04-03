@@ -54,6 +54,11 @@ public class HomeController {
 		return "view_3";
 	}
 	
+	@RequestMapping(value="Notice",method= RequestMethod.GET)
+	public String NoticePage(){
+		return "notice";
+	}
+	
 	
 	// T E S T -----------------------------------------------------------
 	
