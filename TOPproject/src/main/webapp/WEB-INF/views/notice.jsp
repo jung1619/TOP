@@ -184,27 +184,22 @@ input:focus, textarea:focus {
 </script>
 </head>
 <body>
-	<div id="form-main">
-  <div id="form-div">
-    <form class="form" id="form1" method="POST" action="NoticeInsert">
+<div id="form-main">
+	 <div id="form-div">
+    	<form class="form" id="form1" method="POST" action="NoticeInsert">
       
     
       
-      <p class="text">
-        <textarea name="text" class="validate[required,length[6,300]] feedback-input" id="comment" placeholder="Notice context" id="context" name ="context"
-        
-        rows="10px" cols="10px"
-        ></textarea>
-      </p>
-      
-      
+      	<p class="text">
+       	 <textarea name="text" class="validate[required,length[6,300]] feedback-input" id="comment" placeholder="Notice context" id="context" name ="context"
+	        rows="10px" cols="10px"></textarea>
+      	</p>
       <div class="submit">
         <input type="submit" value="SEND" class="button-blue" id="sendNoticeBtn"/>
-     	<div class="ease"></div>
-      </div>
+	  </div>
     </form>
-  </div>
-	
+</div>
+	</div>
 
 </body>
 </html>

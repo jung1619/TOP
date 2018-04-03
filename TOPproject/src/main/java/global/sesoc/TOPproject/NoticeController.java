@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+//noticecontroller
+
+
 
 @Controller
 public class NoticeController {
@@ -20,6 +23,6 @@ public class NoticeController {
 		System.out.println("게시판내용 : "+context);
 		
 		
-		return"redirect:/group";
+		return"redirect:/";
 	}
 }
