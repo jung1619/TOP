@@ -27,7 +27,7 @@ body {
   position: relative;
   margin: 5% auto;
   width: 310px;
-  height: 450px;
+  height: 580px;
   background: #FFF;
   border-radius: 2px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
@@ -40,7 +40,7 @@ body {
   box-sizing: border-box;
   padding: 40px;
   width: 300px;
-  height: 400px;
+  height: auto;
 }
 
 h1 {
@@ -133,111 +133,35 @@ button.social-signin:focus {
 
 
 <script type="text/javascript" src="<c:url value='resources/js/jquery-3.3.1.min.js'/>"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-	
-	/*UserName Check  */
-	
-	$('#username').keydown(function(){
-		console.log($('#username').val());
-		var username = $('#username').val();
-		$.ajax({
-			type : 'GET'
-			,url :'UserNameCheck'
-			,dataType:'text'
-			,data :{ 
-					"username":username}
-			,success	:function(data){
-				console.log('data확인'+data);
-				$('#UserNameCheckDiv').html(data);
-			}
-			, error:function(err){
-				console.log("에러발생");
-			}
-		})
-		
-	});
-	
-	
-	/*e-mail중복 Check form*/
-	
-	$('#email').keydown(function(){
-		console.log($('#email').val());
-		var email = $('#email').val();
-		
-		$.ajax({
-			type: 'GET'
-			,url: 'emailCheck'
-			,dataType:'text'
-			,data : {
-					"email":email
-			}
-			,success : function(data){
-				console.log('result 확인 '+data);
-				$('#emailCheckDiv').html(data);
-				
-			}
-			,error:function(err){
-				console.log("에러발생");
-			}
-			
-		});
-		
-	});
-	
-	
-	
-	/* 비밀번호 Check form */
-	$('#pwCheckDiv').html('비밀번호를 입력해주세요.');
-	$('#pw2').keydown(function(){
-		
-		var pw1_length  = $('#pw1').val().length;
-		var pw2_length = $('#pw2').val().length;
-		
-		console.log('p_length1 : '+pw1_length);
-		console.log('p_length2 : '+pw2_length);
-		console.log('pw1 : '+$('#pw1').val());
-		console.log('pw2 : '+$('#pw2').val());
-		
-		
-		if(pw2_length>=10){
-			var pw1 = $('#pw1').val();
-			var pw2 = $('#pw2').val();
-			
-			
-			
-			if(pw1==pw2){
-				$('#pwCheckDiv').html("비밀번호가 일치합니다.");
-			}else{
-				$('#pwCheckDiv').html("비밀번호가 일치하지 않습니다.");
-			}
-				
-		}	
-	});
-	
-	
-});
+<script type="text/javascript" src="<c:url value='resources/js/join.js'/>"></script>
 
-
-
-</script>
 </head>
 <body>
 
+<div id="errpage"></div>
 
 <div id="login-box">
   <div class="left">
     <h1>Sign up</h1>
     
-    <input type="text" name="username" placeholder="Username" class="joinText" id="username" />
-	<div id="UserNameCheckDiv"></div>
-    <input type="text" name="email" placeholder="E-mail" class="joinText" id="email"/>
-    <div id="emailCheckDiv"></div>
-    <input type="password" name="password" placeholder="Password" class="joinText"  id="pw1"/>
-    <input type="password" name="password2" placeholder="Retype password" class="joinText" id="pw2"/>
+    <input type="text" name="id" class="joinText" placeholder="(필수) ID" id="id" />
+	<div id="idCheckDiv"></div>
+    
+    <input type="password" name="pw" placeholder="(필수) Password" class="joinText"  id="pw1"/>
+    <input type="password" placeholder="Retype password" class="joinText" id="pw2"/>
     <div id="pwCheckDiv"></div>
-    <input type="text" name="email" placeholder="NickName" class="joinText"/>
-    <input type="submit" name="signup_submit" value="Sign up"/>
+    
+    <input type="text" name="email" placeholder="(필수) E-mail" class="joinText" id="email"/>
+    <div id="emailCheckDiv"></div>
+    
+    <input type="text" name="name" placeholder="(필수) Username" class="joinText" id="name" />
+	
+    <input type="text" name="nickname" placeholder="NickName" class="joinText" id="nickname" />
+    
+    <input type="text" name="company" class="joinText" placeholder="Company" id="company" />
+    
+    <input type="submit" name="signup_submit" value="Sign up" id="bt_join"/>
+    
   </div>
 </div>
 
