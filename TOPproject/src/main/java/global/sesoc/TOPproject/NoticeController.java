@@ -19,7 +19,7 @@ public class NoticeController {
 	private final static Logger logger= LoggerFactory.getLogger(JoinController.class);
 	
 	@RequestMapping(value="NoticeInsert", method=RequestMethod.POST)
-	public String boardinsert(@RequestBody String context){
+	public String boardinsert(String context){
 		System.out.println("게시판내용 : "+context);
 		
 		
