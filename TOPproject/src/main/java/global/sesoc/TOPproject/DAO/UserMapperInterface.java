@@ -14,6 +14,7 @@ public interface UserMapperInterface {
 	public int insertUserSchedule(Schedule schedule);
 	public int insertUserMemo(Memo memo);
 	
+	//
 	public User searchUser(String id);
 	public ArrayList<Schedule> selectSchedule(String id);
 	

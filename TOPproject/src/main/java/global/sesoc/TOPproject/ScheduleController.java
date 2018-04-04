@@ -21,7 +21,7 @@ public class ScheduleController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ScheduleController.class);
 	
-	//시간의 형식을 바꿔줌
+	//시간의 형식을 바꿔줌   
 	public String times(String taskS){
 		String reStr = "";
 		for (int i = 0; i < taskS.length(); i++) {

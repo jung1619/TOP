@@ -9,7 +9,7 @@ public class Schedule {
 	private String content;
 	private String color;
 	private String deldate;
-	private int schedule_num;
+	private int schedule_num;	//시퀀스
 	
 	public Schedule(){}
 
