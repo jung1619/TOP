@@ -51,7 +51,7 @@
   	WHERE id = #{id}
   </select>
   
-  <select id="Schedule" parameterType="String" resultType="Schedule">
+  <select id="selectSchedule" parameterType="String" resultType="Schedule">
   	SELECT id, startdate, enddate, content, color, deldate, schedule_num
   	FROM schedule_user
   	WHERE id = #{id} and deldate is NULL
