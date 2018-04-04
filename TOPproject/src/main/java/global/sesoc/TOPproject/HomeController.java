@@ -48,6 +48,7 @@ public class HomeController {
 		return "home";
 	}
 	
+	//그룹 수정
 	@RequestMapping(value = "group", method = RequestMethod.GET)
 	public String group(HttpSession hs,ModelMap modelMap) {
 		String id = (String)hs.getAttribute("loginedId");
