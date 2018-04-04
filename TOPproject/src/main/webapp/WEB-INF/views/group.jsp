@@ -208,6 +208,11 @@ var dataset = [
 
 <div class="top">
 	<span class="topspan1">TOP </span><span class="topspan2"> SMART GROUPWARE</span>
+	
+	
+	${sessionScope.loginedId}님 
+	<span class="logout"><a href="logout">LOGOUT</a></span>
+		
 </div>
 
 <div class="one">

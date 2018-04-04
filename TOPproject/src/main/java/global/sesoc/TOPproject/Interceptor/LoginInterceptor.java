@@ -19,13 +19,13 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		//세션정보 읽기
 		HttpSession session = request.getSession();
-		String loginId = (String)session.getAttribute("loginId");
+		String loginId = (String)session.getAttribute("loginedId");
 		
 		//로그인 되지 않은 경우 로그인 페이지로 이동
 		if(loginId == null){
 			//루트 경로를 구하는 방법
 			String path = request.getContextPath();
-			response.sendRedirect(path+"/customer/loginForm");
+			response.sendRedirect(path+"/home");
 			return false;
 		}
 		return super.preHandle(request, response, handler);

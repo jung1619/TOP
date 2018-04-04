@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 <html>
 <head>
 	<title>Home</title>
@@ -16,25 +15,7 @@
 		.topspan2 { margin: 10px 0px 0px 5px; font-size: 15px; }
 	</style>
 
-	<script type="text/javascript">
-	
-	$(document).ready(function(){
-		<c:if test="${errorMsg != null}"> alert(${errorMsg}); </c:if>
-		
-		$('#loginBtn').on('click', function(){
-			var id = $('#loginID').val();
-			var pw = $('#loginPW').val();
-		
-			if( id != '' && pw != '' ){
-				alert(id+' / '+pw);
-				location.href = "login?id="+id+"&pw="+pw;
-			}else{
-				alert("아이디와 비밀번호 모두 입력해 주십시오.");	
-			}
-		});
-	});
-	
-	</script>
+	<script type="text/javascript" src="<c:url value='resources/js/home.js'/>"></script>
 
 </head>
 <body>
