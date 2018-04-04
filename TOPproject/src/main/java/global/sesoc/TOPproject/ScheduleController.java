@@ -1,10 +1,13 @@
 package global.sesoc.TOPproject;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -36,8 +39,8 @@ public class ScheduleController {
 	
 	//일정 등록
 	@RequestMapping(value = "/insertSchedule", method = RequestMethod.POST)
-	public String insertTimeForm(Model model, Schedule schedule) {
-
+	public String insertTimeForm(Model model, Schedule schedule, HttpSession hs) {
+		//String id = (String)hs.getAttribute("loginedId");
 		schedule.setStartdate(times(schedule.getStartdate()));
 		schedule.setEnddate(times(schedule.getEnddate()));
 		int result = userDAO.insertUserSchedule(schedule);
@@ -51,7 +54,7 @@ public class ScheduleController {
 
 		schedule.setStartdate(times(schedule.getStartdate()));
 		schedule.setEnddate(times(schedule.getEnddate()));
-		int result = userDAO.insertUserSchedule(schedule);
+		int result = userDAO.updateUserSchedule(schedule);
 		
 		return "redirect:/group";
 	}

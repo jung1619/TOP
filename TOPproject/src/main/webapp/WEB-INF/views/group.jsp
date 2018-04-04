@@ -137,11 +137,11 @@ var dataset = [
                 <h4 class="modal-title">새로운 일정 등록</h4>
             </div>
             <div id="modalBody" class="modal-body">
-            <form action="insertTimeForm" method="post">
+            <form action="insertSchedule" method="post">
 	            <table>
 	           		 <tr>
 						<td>
-							<!-- <input type="hidden" name="tsno" id="modalId"> -->
+							<input type="hidden" name="id" value="${sessionScope.loginedId}">
 							<input type="text" name="content" required="required">
 						</td>
 					</tr>
@@ -174,13 +174,11 @@ var dataset = [
                 <h4 class="modal-title modalTitle"></h4>
             </div>
             <div id="modalBody" class="modal-body">
-            <!-- Start: <span class="startTime2"></span><br>
-		    End: <span id="endTime"></span><br><br> -->
-            <form action="updateTimeForm" method="post">
+            <form action="updateUserSchedule" method="post">
 	            <table>
 	           		 <tr>
 						<td>
-							<input type="hidden" name="tsno" id="modalId">
+							<input type="hidden" name="schedule_num" id="modalId">
 							<input type="text" name="content" class="modalTitle" required="required">
 						</td>
 					</tr>
