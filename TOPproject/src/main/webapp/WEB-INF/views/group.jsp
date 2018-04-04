@@ -1,37 +1,74 @@
+<!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%@ page session="false" %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <html>
 <head>
 	<title>GROUP PAGE</title>
 <script type="text/javascript" src="<c:url value='/resources/js/jquery-3.2.1.js'/>"></script>
 <link href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="./resources/css/style.css"/>
-<!-- ½½¶óÀÌ´õ, Ç®Ä¶¸°´õ  -->
+<!-- ìŠ¬ë¼ì´ë”, í’€ìº˜ë¦°ë”  -->
 <link rel="stylesheet" type="text/css" href="./resources/css/fullcalendar.css" />
 <link rel="stylesheet" type="text/css" href="./resources/css/fullcalendar.min.css" />
 <link rel="stylesheet" href='./resources/css/fullcalendar.print.min.css' media='print' />
 <script type="text/javascript" src="<c:url value='/resources/js/jquery.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/resources/js/moment.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/resources/js/fullcalendar.js'/>"></script>
-<script type="text/javascript" src="<c:url value='/resources/js/jquery.sliderPro.min.js'/>"></script>
+<%-- <script type="text/javascript" src="<c:url value='/resources/js/jquery.sliderPro.min.js'/>"></script> --%>
+<script type="text/javascript" src="<c:url value='/resources/js/ko.js'/>"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" rel="stylesheet" />
+<link rel="stylesheet" href='./resources/css/jquery.qtip.css' media='print' />
+<script type="text/javascript" src="<c:url value='/resources/js/jquery.qtip.js'/>"></script>
+
+<link href="http://www.mikesmithdev.com/shared/css/bootstrapmodal.css" rel="stylesheet" />
+<script type="text/javascript" src="<c:url value='/resources/js/bootstrap.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/resources/js/bootstrap.min.js'/>"></script>
+
+<script type="text/javascript" src="<c:url value='/resources/js/jquery-ui.min.js'/>"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script type="text/javascript" src="./resources/js/script.js"></script>
 
 <script type="text/javascript">
+
+var dataset = [
+    <c:forEach var="listview" items="${listview}" varStatus="status">
+        <c:if test="${listview.tsstartdate != ''}">
+            {"id":'<c:out value="${listview.tsno}" />'
+            ,"title":'<c:out value="${listview.tstitle}" />'
+            ,"start":"<c:out value="${listview.tsstartdate}" />"
+            <c:if test="${listview.tsenddate != ''}">
+                ,"end":"<c:out value="${listview.tsenddate}" />"
+        	</c:if>
+            } 
+            <c:if test="${!status.last}">,</c:if>
+        </c:if>
+    </c:forEach>
+    ];
+
  $(document).ready(function() {
-     //$("#header").load("/stagestageList.jps")
-	//´Ş·Â 
+	 
+	//$("#header").load("/stagestageList.jps")
+	//ë‹¬ë ¥ 
 	$('#calendar').css('width', '50%');
 	$('#calendar').css('float', 'left');
 	$('#calendar').css('padding', '10px');
 	$('#calendar').css('border', '1px solid lightgray');
 	//$('.fc-day-number.fc-sat').css('background-color', '#0000FF');
 	$('#calendar').fullCalendar({
+		customButtons: { 
+	        myCustomButton: { 
+	            text: 'ì¼ì •ì…ë ¥', 
+	            click: function(event) { 
+	            	 $('#fullCalNew').modal(); 
+	            	} 
+	        	}
+			}, 	
     	 	header: {
-    	        left: 'prev,next today',
+    	        left: 'prev,next myCustomButton',
     	        center: 'title',
     	        right: 'month,agendaWeek,agendaDay,listWeek'
     	    },
@@ -39,149 +76,135 @@
     	      navLinks: true, // can click day/week names to navigate views
     	      editable: true,
     	      eventLimit: true, // allow "more" link when too many events
-    	      events: [
-    	        {
-    	          title: '1',
-    	          start: '2018-03-16T12:00:00',
-    	          end: '2018-03-19T18:00:00',
-    	          url: '/',
-    	          color: 'hsl(0, 20%, 30%)'
-    	        }, {
-    	          title: '2',
-    	          start: '2018-03-18T12:00:00',
-    	          end: '2018-03-21T18:00:00',
-    	          url: '/',
-    	          color: 'hsl(0, 100%, 75%)'
-    	        },  {
-    	          title: '3',
-    	          start: '2018-03-23T12:00:00',
-    	          end: '2018-03-26T18:00:00',
-    	          url: '/',
-    	          color: 'hsl(0, 100%, 75%)'
-    	        },  {
-    	          title: '4',
-    	          start: '2018-03-05T12:00:00',
-    	          end: '2018-03-05T18:00:00',
-    	          url: '/',
-    	          color: 'hsl(0, 50%, 75%)'
-    	        },  {
-    	          title: '5',
-    	          start: '2018-03-01T12:00:00',
-    	          end: '2018-03-03T18:00:00',
-    	          url: '/',
-    	          color: 'rgb(0, 204, 255)'
-    	        }, 
-
-    	      ]
+    	      events: dataset,
+    	      eventRender: function (event, element) {
+    	    	  element.qtip({    
+    	              content: {    
+    	                  title: { text: event.title },
+    	                  text: '<span class="title">Start: </span>' + ($.fullCalendar.formatDate(event.start, 'hh:mmtt')) + '<br><span class="title">Description: </span>' + event.description       
+    	              },
+    	              show: { solo: true },
+    	              //hide: { when: 'inactive', delay: 3000 }, 
+    	              style: { 
+    	                  width: 200,
+    	                  padding: 5,
+    	                  color: 'black',
+    	                  textAlign: 'left',
+    	                  border: {
+    	                  width: 1,
+    	                  radius: 3
+    	               },
+    	                  tip: 'topLeft',
+    	                  classes: { 
+    	                      tooltip: 'ui-widget', 
+    	                      tip: 'ui-widget', 
+    	                      title: 'ui-widget-header', 
+    	                      content: 'ui-widget-content' 
+    	                  } 
+    	              } 
+    	          });
+    	      },
+    	      eventClick:  function(event, jsEvent, view) {
+    	    	    $('#startTime').val(moment(event.start).format('YYYY-MM-DD')+'T'+moment(event.start).format('HH:mm'));
+    	    	    $('#endTime').val(moment(event.end).format('YYYY-MM-DD')+'T'+moment(event.end).format('HH:mm'));
+    	            
+    	    	    $("#eventInfo").html(event.description);
+    	            $("#eventLink").attr('href', event.url);
+    	            $("#eventContent").dialog({ modal: true, title: event.title, width:350});
+    	            $('.modalTitle').html(event.title);
+    	            //$('#modalId').html(event.id);
+    	            $('#modalId').attr('value', event.id);
+    	            $('.modalTitle').attr('value', event.title);
+    	            $('#modalBody').html(event.description);
+    	            $('#eventUrl').attr('href',event.url);
+    	            $('#fullCalModal').modal();
+    	        }
     	    });
-
     	  });
-</script>
+ 
+ </script>
 
 <style type="text/css">
-.top{
-	width : 100%;
-	height : 40px;
-	background-color: #999999;
-}
-
-.topspan1 {
-	margin : 10px 0px 0px 30px;
-	font-size: 25px;
-	font-weight : bold;
-}
-.topspan2 {
-	margin : 10px 0px 0px 5px;
-	font-size: 15px;
-}
-
-.one {
-	background-color: #f2f5f5;
-	width : 15%;
-	height : 100%;
-	float: left;
-	margin-right: 10px;
-	text-align: center;
-}
-
-.two {
-	width : 100%;
-	height: 50px;
-	background-color: #000042;
-	color:white;
-	float: left;
-	font-weight : bold;
-	display:table;
-	margin-top: 10px;
-}
-
-.groupName {
-	height: 150px;
-	width:95%;
-	margin:10px auto 10px auto;
-	/* ±Û¾¾ Á¤Áß¾Ó Á¤·Ä 1 */
-	display:table;
-}
-
-	/* ±Û¾¾ Á¤Áß¾Ó Á¤·Ä 2 */
-.center {
-	display:table-cell;
-	margin:auto;
-	text-align:center;
-	vertical-align:middle;
-	font-weight : bold;
-}
-
-.three {
-	margin : 10px 0px 10px 0px;
-}
-
-.threeTable {
-	padding-left: 20px;
-	width: 50%;
-}
-
-.threeTable tr {
-	height : 30px;
-}
-
-.threeTable .th0 {
-	text-align: left;
-	font-weight: normal;
-	font-size: 25px;
-	color : gray;
-}
-
-.threeTable .th1 {
-	text-align: left;
-	font-weight: normal;
-	font-size: 13px;
-}
-
-.threeTable td {
-	width : 50px;
-}
-
-.paging {
-	text-align: center;
-}
-
-.memberTitle{
-	margin-bottom: 20px;
-	font-size : 20px;
-}
-
-.fourTable {
-	float: right;
-}
-
-body {
-	margin : 0px;
-}
-
 </style>
 </head>
 <body>
+
+<div id="fullCalNew" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">Ã—</span> <span class="sr-only">close</span></button>
+                <h4 class="modal-title">ìƒˆë¡œìš´ ì¼ì • ë“±ë¡</h4>
+            </div>
+            <div id="modalBody" class="modal-body">
+            <form action="insertTimeForm" method="post">
+	            <table>
+	           		 <tr>
+						<td>
+							<!-- <input type="hidden" name="tsno" id="modalId"> -->
+							<input type="text" name="tstitle" required="required">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="datetime-local" name="tsstartdate" required="required">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="datetime-local" name="tsenddate" required="required">
+						</td>
+					</tr>
+				</table>
+            	<input type="submit" id="eventUrl" class="btn btn-primary" value="ë“±ë¡">
+            </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">ë‹«ê¸°</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="fullCalModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">Ã—</span> <span class="sr-only">close</span></button>
+                <h4 class="modal-title modalTitle"></h4>
+            </div>
+            <div id="modalBody" class="modal-body">
+            <!-- Start: <span class="startTime2"></span><br>
+		    End: <span id="endTime"></span><br><br> -->
+            <form action="updateTimeForm" method="post">
+	            <table>
+	           		 <tr>
+						<td>
+							<input type="hidden" name="tsno" id="modalId">
+							<input type="text" name="tstitle" class="modalTitle" required="required">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="datetime-local" id="startTime" name="tsstartdate">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<input type="datetime-local" id="endTime" name="tsenddate">
+						</td>
+					</tr>
+				</table>
+            	<input type="submit" id="eventUrl" class="btn btn-primary" value="ìˆ˜ì •">
+            </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">ë‹«ê¸°</button>
+                <button class="btn btn-primary"><a id="eventUrl" target="_blank">ì¼ì • ì‚­ì œ</a></button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="top">
 	<span class="topspan1">TOP </span><span class="topspan2"> SMART GROUPWARE</span>
@@ -189,7 +212,7 @@ body {
 
 <div class="one">
 	<div class="two">
-		<span class="center"><a href="view_3">È¸ÀÇÇÏ±â</a></span>
+		<span class="center">íšŒì˜í•˜ê¸°</span>
 	</div>
 	<div class="groupName">
 		<span class="center"> TOP <br> Take of Project </span>
@@ -198,7 +221,7 @@ body {
 		<div class="memberTitle"> MEMBER LIST </div>
 		<div class="member">
 			
-			<div class="pm"><img src="./resources/img/pm.png" style="width:20px;"/> Á¤±¤Ã¶</div>
+			<div class="pm"><img src="./resources/img/pm.png" style="width:20px;"/> ì •ê´‘ì² </div>
 		</div>
 	</div>
 </div>
@@ -206,23 +229,23 @@ body {
 <div class="three">
 	<table class="threeTable">
 		<tr>
-			<th class="th0">°øÁö</th>
+			<th class="th0">ê³µì§€</th>
 			<td></td>
 		</tr>
 		<tr>
-			<th class="th1">´ÙÀ½ È¸ÀÇ´Â 4¿ù 3ÀÏ ÄÚ¿¢½º</th>
+			<th class="th1">ë‹¤ìŒ íšŒì˜ëŠ” 4ì›” 3ì¼ ì½”ì—‘ìŠ¤</th>
 			<td>03/22</td>
 		</tr>
 		<tr>
-			<th class="th1">Å¬¶ó¿ìµå ÀÏ°ı Ã¼Å© ºÎÅ¹µå¸³´Ï´Ù</th>
+			<th class="th1">í´ë¼ìš°ë“œ ì¼ê´„ ì²´í¬ ë¶€íƒë“œë¦½ë‹ˆë‹¤</th>
 			<td>03/22</td>
 		</tr>
 		<tr>
-			<th class="th1">¼öÇĞ ¹ßÇ¥ÀÚ·á ¼öÁı ¿Ï·á</th>
+			<th class="th1">ìˆ˜í•™ ë°œí‘œìë£Œ ìˆ˜ì§‘ ì™„ë£Œ</th>
 			<td>03/20</td>
 		</tr>
 		<tr>
-			<th class="th1">±İ¿ä Áß°£¹ßÇ¥ ½Ã °úÁ¦ Á¦ÃâÇØÁÖ¼¼¿ä.</th>
+			<th class="th1">ê¸ˆìš” ì¤‘ê°„ë°œí‘œ ì‹œ ê³¼ì œ ì œì¶œí•´ì£¼ì„¸ìš”.</th>
 			<td>03/18</td>
 		</tr>
 
@@ -236,31 +259,31 @@ body {
 <div class="four">
 	<table class="fourTable">
 		<tr>
-			<th class="th0">ÆÄÀÏ¸®½ºÆ®</th>
+			<th class="th0">íŒŒì¼ë¦¬ìŠ¤íŠ¸</th>
 			<td></td>
 		</tr>
 		<tr>
-			<th class="th1">ÆÄÀÏ1</th>
+			<th class="th1">íŒŒì¼1</th>
 			<td>03/22</td>
 		</tr>
 		<tr>
-			<th class="th1">ÆÄÀÏ2</th>
+			<th class="th1">íŒŒì¼2</th>
 			<td>03/22</td>
 		</tr>
 		<tr>
-			<th class="th1">ÆÄÀÏ3</th>
+			<th class="th1">íŒŒì¼3</th>
 			<td>03/20</td>
 		</tr>
 		<tr>
-			<th class="th1">ÆÄÀÏ4</th>
+			<th class="th1">íŒŒì¼4</th>
 			<td>03/18</td>
 		</tr>
 		<tr>
-			<th class="th1">ÆÄÀÏ5</th>
+			<th class="th1">íŒŒì¼5</th>
 			<td>03/18</td>
 		</tr>
 		<tr>
-			<th class="th1">ÆÄÀÏ6</th>
+			<th class="th1">íŒŒì¼6</th>
 			<td>03/18</td>
 		</tr>
 	</table>
