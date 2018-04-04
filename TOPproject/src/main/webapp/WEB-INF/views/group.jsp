@@ -36,12 +36,12 @@
 
 var dataset = [
     <c:forEach var="listview" items="${listview}" varStatus="status">
-        <c:if test="${listview.tsstartdate != ''}">
-            {"id":'<c:out value="${listview.tsno}" />'
-            ,"title":'<c:out value="${listview.tstitle}" />'
-            ,"start":"<c:out value="${listview.tsstartdate}" />"
-            <c:if test="${listview.tsenddate != ''}">
-                ,"end":"<c:out value="${listview.tsenddate}" />"
+        <c:if test="${listview.startdate != ''}">
+            {"id":'<c:out value="${listview.schedule_num}" />'
+            ,"title":'<c:out value="${listview.content}" />'
+            ,"start":"<c:out value="${listview.startdate}" />"
+            <c:if test="${listview.enddate != ''}">
+                ,"end":"<c:out value="${listview.enddate}" />"
         	</c:if>
             } 
             <c:if test="${!status.last}">,</c:if>
@@ -142,17 +142,17 @@ var dataset = [
 	           		 <tr>
 						<td>
 							<!-- <input type="hidden" name="tsno" id="modalId"> -->
-							<input type="text" name="tstitle" required="required">
+							<input type="text" name="content" required="required">
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<input type="datetime-local" name="tsstartdate" required="required">
+							<input type="datetime-local" name="startdate" required="required">
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<input type="datetime-local" name="tsenddate" required="required">
+							<input type="datetime-local" name="enddate" required="required">
 						</td>
 					</tr>
 				</table>
@@ -181,17 +181,17 @@ var dataset = [
 	           		 <tr>
 						<td>
 							<input type="hidden" name="tsno" id="modalId">
-							<input type="text" name="tstitle" class="modalTitle" required="required">
+							<input type="text" name="content" class="modalTitle" required="required">
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<input type="datetime-local" id="startTime" name="tsstartdate">
+							<input type="datetime-local" id="startTime" name="startdate">
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<input type="datetime-local" id="endTime" name="tsenddate">
+							<input type="datetime-local" id="endTime" name="enddate">
 						</td>
 					</tr>
 				</table>
