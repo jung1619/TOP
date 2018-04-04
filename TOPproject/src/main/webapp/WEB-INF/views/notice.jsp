@@ -191,7 +191,7 @@ input:focus, textarea:focus {
     
       
       	<p class="text">
-       	 <textarea name="text" class="validate[required,length[6,300]] feedback-input" id="comment" placeholder="Notice context" id="context" name ="context"
+       	 <textarea class="validate[required,length[6,300]] feedback-input" id="comment" placeholder="Notice context" id="context" name ="context"
 	        rows="10px" cols="10px"></textarea>
       	</p>
       <div class="submit">
