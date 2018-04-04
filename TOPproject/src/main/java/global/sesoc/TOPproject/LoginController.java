@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import global.sesoc.TOPproject.DAO.UserDAO;
 import global.sesoc.TOPproject.VO.User;
@@ -23,8 +24,9 @@ public class LoginController {
 	UserDAO userDao;
 	
 	
-	@RequestMapping(value="login", method=RequestMethod.GET)
-	public String login(User user, Model m, HttpSession hs){
+	@ResponseBody
+	@RequestMapping(value="login", method=RequestMethod.POST)
+	public String login(User user, HttpSession hs){
 		logger.info("로그인 시도 : " + user);
 		
 		User loginedUser = userDao.searchUser(user.getId());
@@ -33,14 +35,11 @@ public class LoginController {
 			hs.setAttribute("loginedId", loginedUser.getId() );
 			hs.setAttribute("loginedNickname", loginedUser.getNickname() );
 			
-			System.out.println((String)hs.getAttribute("loginedId"));
 			logger.info("로그인 성공");
-			return "group";
+			return "1";
 		}else{ // 해당 ID가 없는 경우, ID와 PW의 불일치
-			m.addAttribute("errorMsg", "입력하신 아이디와 비밀번호를 다시 확인해 주십시오.");
-			
 			logger.info("로그인 실패");
-			return "home";
+			return "2";
 		} 
 	}//login()
 	
