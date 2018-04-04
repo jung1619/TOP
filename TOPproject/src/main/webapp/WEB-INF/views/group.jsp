@@ -122,9 +122,12 @@ var dataset = [
     	    });
     	  });
  
+
+ 
  </script>
 
 <style type="text/css">
+
 </style>
 </head>
 <body>
@@ -290,6 +293,26 @@ var dataset = [
 			<td>03/18</td>
 		</tr>
 	</table>
+</div>
+
+
+<div class="searchId">
+	<h3>친구검색</h3>
+	<form action="idSearch" method="POST">
+		<input type="text" name="searchId" id="searchId" class="searchId" placeholder="ID Here...">
+		<input type="submit" value="Search"> <br />
+		
+		<c:choose>
+			<c:when test="${result != null}">
+				${searchId} <input type="button" value="+">
+			</c:when>
+			<c:when test="${result == null}">
+				없는 ID입니다.			
+			</c:when>
+		
+		</c:choose>
+		
+	</form>
 </div>
 
 </body>
