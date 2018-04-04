@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+//noticecontroller
+
+
 
 @Controller
 public class NoticeController {
@@ -16,10 +19,10 @@ public class NoticeController {
 	private final static Logger logger= LoggerFactory.getLogger(JoinController.class);
 	
 	@RequestMapping(value="NoticeInsert", method=RequestMethod.POST)
-	public String boardinsert(@RequestBody String context){
+	public String boardinsert(String context){
 		System.out.println("게시판내용 : "+context);
 		
 		
-		return"redirect:/group";
+		return"redirect:/";
 	}
 }

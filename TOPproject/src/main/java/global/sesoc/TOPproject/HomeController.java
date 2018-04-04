@@ -1,16 +1,20 @@
 package global.sesoc.TOPproject;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -29,6 +33,8 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	@Autowired
+	UserDAO userDAO;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
@@ -42,9 +48,12 @@ public class HomeController {
 		return "home";
 	}
 	
+	//그룹 수정
 	@RequestMapping(value = "group", method = RequestMethod.GET)
-	public String group() {
-		
+	public String group(HttpSession hs,ModelMap modelMap) {
+		String id = (String)hs.getAttribute("loginedId");
+		ArrayList<Schedule> scheduleListview  = userDAO.selectSchedule(id);
+		modelMap.addAttribute("listview", scheduleListview);
 		return "group";
 	}
 	

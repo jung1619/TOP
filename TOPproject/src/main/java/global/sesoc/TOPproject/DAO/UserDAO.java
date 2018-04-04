@@ -1,5 +1,6 @@
 package global.sesoc.TOPproject.DAO;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.inject.Inject;
@@ -24,7 +25,7 @@ public class UserDAO {
 	
 
 	// I N S E R T ------------------------------------------------------------------
-	
+	//
 	
 	public int insertUser(User user){
 		logger.info("회원 등록 : " + user);
@@ -92,6 +93,18 @@ public class UserDAO {
 		}catch(Exception e){ logger.info("회원 검색 실패"); e.printStackTrace(); }
 		
 		return user;
+	}
+	
+	public ArrayList<Schedule> selectSchedule(String id){
+		ArrayList<Schedule> schedule = new ArrayList<Schedule>();
+		try {
+			UserMapperInterface mapper = sqls.getMapper(UserMapperInterface.class);
+			schedule = mapper.selectSchedule(id);
+			logger.info("회원 스케쥴 리스트 : " + schedule);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return schedule;
 	}
 	
 	
