@@ -92,5 +92,19 @@ public class HomeController {
 
 		return "group";
 	}
+	
+	//친구추가
+	@RequestMapping(value = "addFriend", method = RequestMethod.GET)
+	public String addFriend(String sessionId, String friendId, Model model) {
+		logger.info("친구추가 시도 : " + sessionId + friendId);
+		
+		int result = userDAO.updateFriendList(sessionId, friendId);
+		
+		model.addAttribute("addedFriend", friendId);
+		
+		logger.info("친구추가 종료 : " + sessionId + friendId);
+		
+		return "group";
+	}
 
 }// class

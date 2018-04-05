@@ -124,6 +124,12 @@ var dataset = [
  
 
  
+ function addFriend(sessionId, friendId) {
+	if(confirm(friendId + "를 친구로 추가하시겠습니까?")){
+		location.href = "addFriend?sessionId=" + sessionId + "&friendId=" + friendId;
+	}
+}
+ 
  </script>
 
 <style type="text/css">
@@ -304,7 +310,7 @@ var dataset = [
 		
 		<c:choose>
 			<c:when test="${result != null}">
-				${searchId} <input type="button" value="+">
+				${searchId} <input type="button" value="+" onclick="addFriend('${sessionId}', '${searchId}')">
 			</c:when>
 			<c:when test="${result == null}">
 				없는 ID입니다.			
@@ -313,7 +319,15 @@ var dataset = [
 		</c:choose>
 		
 	</form>
+	<br />
+
 </div>
+
+<div class="friendList">
+	<h3>친구목록</h3>
+	${addedFriend}
+</div>
+
 
 </body>
 </html>
