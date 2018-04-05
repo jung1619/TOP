@@ -24,23 +24,21 @@ public class LoginController {
 	UserDAO userDao;
 	
 	
-	@ResponseBody
 	@RequestMapping(value="login", method=RequestMethod.POST)
-	public String login(User user, HttpSession hs){
+	public String login(User user, HttpSession hs,Model model){
 		logger.info("로그인 시도 : " + user);
 		
 		User loginedUser = userDao.searchUser(user.getId());
 		
-		if( (loginedUser != null) && (user.getPw().equals(loginedUser.getPw())) ){ // 로그인
-			hs.setAttribute("loginedId", loginedUser.getId() );
-			hs.setAttribute("loginedNickname", loginedUser.getNickname() );
-			
-			logger.info("로그인 성공");
-			return "1";
-		}else{ // 해당 ID가 없는 경우, ID와 PW의 불일치
-			logger.info("로그인 실패");
-			return "2";
-		} 
+		//세션을 담음
+		hs.setAttribute("loginedId", loginedUser.getId());
+		String groupList = loginedUser.getP_num_list();
+		String [] groupArr = groupList.split("/");
+	
+		//모델로 보내줌
+		model.addAttribute("groupList",groupArr);
+		
+		return "personal";
 	}//login()
 	
 	
@@ -48,7 +46,7 @@ public class LoginController {
 	public String logout( HttpSession hs ){
 		
 		hs.invalidate();
-		return "home";
+		return "redirect:/";
 	}//logout
 
 }//class

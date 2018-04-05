@@ -19,7 +19,7 @@
 
 </head>
 <body>
-
+	<form action="login" method="POST">
 	<div class="top">
 		<span class="topspan1">TOP </span>
 		<span class="topspan2"> SMARTGROUPWARE</span>
@@ -28,7 +28,7 @@
 	    	<c:when test="${sessionScope.loginedId == null}">
 			    <input type="text" placeholder="ID" name="id" id="loginID">
 			    <input type="password" placeholder="PW" name="pw" id="loginPW">
-			    <input type="button" value="login" id="loginBtn">
+			    <input type="submit" value="login">
 			    <a href="join">JOIN</a> 
 	    	</c:when>
 	    	<c:otherwise>
@@ -37,7 +37,7 @@
 	    </c:choose>
 		</span>
 	</div>
-
+	</form>
 
 </body>
 </html>

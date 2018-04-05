@@ -43,7 +43,7 @@
   <!-- S E L E C T -->
   
   <select id="searchUser" parameterType="map" resultType="User">
-  	SELECT id, pw, email, name, nickname, company
+  	SELECT id, pw, email, name, nickname, company,p_num_list
   	FROM top_user
   	WHERE id = #{id}
   </select>
