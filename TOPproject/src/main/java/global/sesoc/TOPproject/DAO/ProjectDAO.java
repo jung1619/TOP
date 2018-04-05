@@ -1,5 +1,7 @@
 package global.sesoc.TOPproject.DAO;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import global.sesoc.TOPproject.HomeController;
 import global.sesoc.TOPproject.VO.Memo;
+import global.sesoc.TOPproject.VO.Notice;
 import global.sesoc.TOPproject.VO.Project;
 import global.sesoc.TOPproject.VO.Schedule;
 
@@ -128,5 +131,25 @@ public class ProjectDAO {
 		return result;
 	}
 	
+	
+	//S E L E C T ------------------------------------------------------------------
+	public ArrayList<Notice> noticeList(String p_num){
+		System.out.println(p_num);
+		ArrayList<Notice> n_list = null;
+		
+		ProjectMapperInterface mapper = sqls.getMapper(ProjectMapperInterface.class);
+		
+		
+		try{
+			n_list = mapper.noticeList(p_num);
+			logger.info("공지 불러오기 성공");
+		}catch(Exception e){
+			
+			logger.info("공지리스트 불러오기 실패");
+			e.printStackTrace();
+		}
+		
+		return  n_list;
+	}
 
 }

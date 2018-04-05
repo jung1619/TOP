@@ -72,7 +72,20 @@
   	SET n_deldate = SYSDATE
   	WHERE p_num = #{p_num}
   </update>
+  <!-- S E L E C T -->
+  <select id="noticeList"  parameterType="String" resultType="Notice">
+  SELECT
+  	 p_num
+  	,n_content
+  	,n_indate
+  	,n_deldate
+  FROM
+   	notice
+  WHERE
+    p_num = #{p_num} 	
   
+  
+  </select>
   
   
   </mapper>

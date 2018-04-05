@@ -1,6 +1,9 @@
 package global.sesoc.TOPproject.DAO;
  
+import java.util.ArrayList;
+
 import global.sesoc.TOPproject.VO.Memo;
+import global.sesoc.TOPproject.VO.Notice;
 import global.sesoc.TOPproject.VO.Project;
 import global.sesoc.TOPproject.VO.Schedule;
 
@@ -15,5 +18,6 @@ public interface ProjectMapperInterface {
 	public int updateProjectNotice(Memo memo);
 	
 	public int deleteProjectNotice(Memo memo);
+	public ArrayList<Notice> noticeList(String p_num);
 	
 }

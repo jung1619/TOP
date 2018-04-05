@@ -244,22 +244,14 @@ var dataset = [
 			<th class="th0">공지</th>
 			<td></td>
 		</tr>
-		<tr>
-			<th class="th1">다음 회의는 4월 3일 코엑스</th>
-			<td>03/22</td>
-		</tr>
-		<tr>
-			<th class="th1">클라우드 일괄 체크 부탁드립니다</th>
-			<td>03/22</td>
-		</tr>
-		<tr>
-			<th class="th1">수학 발표자료 수집 완료</th>
-			<td>03/20</td>
-		</tr>
-		<tr>
-			<th class="th1">금요 중간발표 시 과제 제출해주세요.</th>
-			<td>03/18</td>
-		</tr>
+		<!-- 공지리스트를 띄어줌 -->
+		<c:forEach var="notice" items="${n_list}"> 
+			<tr>
+				<td>${notice.n_content}</td>
+				<td>${notice.n_indate }</td>
+			</tr>
+		
+		</c:forEach>
 
 		<tr>
 			<td colspan="2"><div class="paging"> 1 2 3 4 5 </div></td>
