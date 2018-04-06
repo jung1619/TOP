@@ -29,9 +29,12 @@
 			    <input type="text" placeholder="ID" name="id" id="loginID">
 			    <input type="password" placeholder="PW" name="pw" id="loginPW">
 			    <input type="submit" value="login">
+			   
 			    <a href="join">JOIN</a> 
+			    
 	    	</c:when>
 	    	<c:otherwise>
+	    	 <a href="logout">logout</a>
 	    		${sessionScope.loginedId}
 	    	</c:otherwise>
 	    </c:choose>
