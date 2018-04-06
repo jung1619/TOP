@@ -31,7 +31,7 @@
 			    <input type="submit" value="login">
 			   
 			    <a href="join">JOIN</a> 
-			    
+			    <!-- 로그아웃 -->
 	    	</c:when>
 	    	<c:otherwise>
 	    	 <a href="logout">logout</a>

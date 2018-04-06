@@ -9,6 +9,7 @@
 		<typeAlias type="global.sesoc.TOPproject.VO.Project" alias="Project" />
 		<typeAlias type="global.sesoc.TOPproject.VO.Schedule" alias="Schedule" />
 		<typeAlias type="global.sesoc.TOPproject.VO.Memo" alias="Memo" />
+		<!--Notice추가  -->
 		<typeAlias type="global.sesoc.TOPproject.VO.Notice" alias="Notice" />
 	</typeAliases>
 	
