@@ -81,7 +81,7 @@ function create(){
 					},
 					success : function( data ){ 
 						alert('프로젝트 생성이 완료되었습니다.');
-						location.href = "group";
+						location.href = "personal";
 					},
 					error : function( err ){ $('#errpage').html( JSON.stringify(err) ); }
 				});//ajax	

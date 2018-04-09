@@ -32,7 +32,8 @@
 	
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/group"/>
+			<mvc:mapping path="/personal"/>
+			<mvc:mapping path="/group_form"/>
 			<beans:ref bean="LoginInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

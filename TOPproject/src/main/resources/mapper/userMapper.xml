@@ -56,6 +56,13 @@
   </select>
   
   
+  <select parameterType="String" id="searchUserFL" resultType="String"> 
+  	SELECT fl 
+  	FROM friend_list 
+  	WHERE id = #{id} 
+  </select>
+  
+  
   <!-- I N S E R T -->
 
   <insert id="insertUser" parameterType="User">
