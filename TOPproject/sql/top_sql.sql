@@ -4,7 +4,9 @@ DROP TABLE top_project;
 DROP SEQUENCE p_num_seq;
 DROP TABLE notice;
 DROP TABLE memo;
+DROP SEQUENCE s_u_seq; 
 DROP TABLE schedule_user;
+DROP SEQUENCE s_p_seq;
 DROP TABLE schedule_project;
 DROP TABLE CHAT;
 
@@ -16,6 +18,8 @@ CREATE TABLE top_user (
     name VARCHAR2(50) NOT NULL, 
     nickname VARCHAR2(50), 
     company VARCHAR2(100),
+    p_num_list VARCHAR2(1000),
+    leavedate DATE,
     CONSTRAINT PK_top_user PRIMARY KEY(id)
 );
     
@@ -35,7 +39,7 @@ CREATE TABLE top_project(
     p_m_id VARCHAR2(30) NOT NULL,
     p_name VARCHAR2(30) NOT NULL,
     p_memberlist VARCHAR2(100) NOT NULL,
-    p_indate DATE DEFAULT SYSDATE,
+    p_indate DATE,
     p_deldate DATE,
     CONSTRAINT PK_top_project PRIMARY KEY(p_num)
 );
@@ -58,6 +62,10 @@ CREATE TABLE memo(
     REFERENCES top_user (id) on delete cascade
 );
 
+CREATE SEQUENCE s_u_seq
+START WITH 1
+MAXVALUE 2000;
+
 CREATE TABLE schedule_user(
     id VARCHAR2(30) NOT NULL,
     start_date DATE NOT NULL,
@@ -67,6 +75,10 @@ CREATE TABLE schedule_user(
     CONSTRAINT FK_top_user_sche FOREIGN KEY(id)
     REFERENCES top_user (id) on delete cascade
 );
+
+CREATE SEQUENCE s_p_seq
+START WITH 1
+MAXVALUE 2000;
 
 CREATE TABLE schedule_project(
     p_num NUMBER NOT NULL,

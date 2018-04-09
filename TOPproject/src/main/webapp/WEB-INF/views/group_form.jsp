@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
- 
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>회원가입</title>
+<title>그룹 생성</title>
 
 <style type="text/css">
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500);
@@ -27,7 +26,7 @@ body {
 #login-box {
   position: relative;
   margin: 5% auto;
-  width: 310px;
+  width: 500px;
   height: 580px;
   background: #FFF;
   border-radius: 2px;
@@ -40,7 +39,7 @@ body {
   left: 0;
   box-sizing: border-box;
   padding: 40px;
-  width: 300px;
+  width: 490px;
   height: auto;
 }
 
@@ -132,39 +131,51 @@ button.social-signin:focus {
 }
 </style>
 
-
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css" />
 <script type="text/javascript" src="<c:url value='resources/js/jquery-3.3.1.min.js'/>"></script>
-<script type="text/javascript" src="<c:url value='resources/js/join.js'/>"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script type="text/javascript" src="<c:url value='resources/js/group_form.js'/>"></script>
+
+<script type="text/javascript">
+
+var memberList = [];
+var loginedId = '<%=(String)session.getAttribute("loginedId")%>';
+
+</script>
 
 </head>
 <body>
 
-<div id="errpage"></div>
-
-<div id="login-box">
-  <div class="left">
-    <h1>Sign up</h1>
-    
-    <input type="text" name="id" class="joinText" placeholder="(필수) ID" id="id" />
-	<div id="idCheckDiv"></div>
-    
-    <input type="password" name="pw" placeholder="(필수) Password" class="joinText"  id="pw1"/>
-    <input type="password" placeholder="Retype password" class="joinText" id="pw2"/>
-    <div id="pwCheckDiv"></div>
-    
-    <input type="text" name="email" placeholder="(필수) E-mail" class="joinText" id="email"/>
-    <div id="emailCheckDiv"></div>
-    
-    <input type="text" name="name" placeholder="(필수) Username" class="joinText" id="name" />
+	<div id="errpage"></div>
 	
-    <input type="text" name="nickname" placeholder="NickName" class="joinText" id="nickname" />
-    
-    <input type="text" name="company" class="joinText" placeholder="Company" id="company" />
-    
-    <input type="submit" name="signup_submit" value="Sign up" id="bt_join"/>
-    
-  </div>
-</div>
+	<div id="login-box">
+	  <div class="left">
+	    <h1>새 프로젝트 생성</h1>
+	    
+	    <input hidden="loginedId" value="${sessionScope.loginedId}">
+	    <input type="text" placeholder="프로젝트명" id="projacename" class="joinText" /><br>
+	    
+	    <label for="fl">프로젝트 구성원을 선택하십시오. (현재 친구 상태인 유저만 추가 가능합니다.)</label><br><br>
+	    <input type="text" placeholder="아이디로 검색할 수 있습니다." class="joinText" id="fl">
+	    
+	    
+	    <ul id="menu">
+		  <li class="ui-widget-header"> <div>프로젝트 매니저 : ${sessionScope.loginedId}</div> </li>
+		  <!-- 선택된 멤버가 추가되는 부분 -->
+		  
+		</ul>
+		<input type="button" value="선택 삭제" onclick="del()"><br><br><br>
+
+    	프로젝트 기간을 설정하십시오.<br>
+    	<p>시작일: <input type="text" id="datepicker_start"></p>
+    	<p>종료일: <input type="text" id="datepicker_end"></p>
+		
+		
+	    <input type="button" value="Create" onclick="create()" />
+	    
+	  </div>
+	</div>
 
 </body>
 </html>
