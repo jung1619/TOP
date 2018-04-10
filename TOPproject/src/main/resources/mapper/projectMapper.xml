@@ -84,8 +84,25 @@
   WHERE
     p_num = #{p_num} 	
   
+  </select>
+  
+  <select id="memberList" parameterType="String" resultType="String">
+  SELECT
+  	p_memberlist
+  FROM
+   	top_project
+  WHERE
+  	p_num=#{p_num} 	
+  
   
   </select>
+  
+ 
+  
+  
+  
+  
+ 
   
   
   </mapper>

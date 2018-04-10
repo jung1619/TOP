@@ -133,6 +133,8 @@ public class ProjectDAO {
 	
 	
 	//S E L E C T ------------------------------------------------------------------
+	
+	
 	public ArrayList<Notice> noticeList(String p_num){
 		System.out.println(p_num);
 		ArrayList<Notice> n_list = null;
@@ -150,6 +152,33 @@ public class ProjectDAO {
 		}
 		
 		return  n_list;
+	}
+	
+	
+	public String memberList(String p_num){
+		String p_memberList = "";
+		
+		logger.info("DAO p_num : "+p_num);
+		ProjectMapperInterface mapper=  sqls.getMapper(ProjectMapperInterface.class);
+		
+		try{
+			
+			p_memberList = mapper.memberList(p_num);
+			logger.info("DAO p_memberList : "+p_memberList);
+			
+			
+			
+		}catch(Exception e){
+			
+			logger.info("memberList불러오기 실패");
+			e.printStackTrace();
+		}
+		
+		
+		
+		return p_memberList;
+		
+				
 	}
 
 }

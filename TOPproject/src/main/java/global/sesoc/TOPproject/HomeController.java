@@ -85,6 +85,7 @@ public class HomeController {
 			System.out.println(n+"받아온 노티스 출력");
 		}
 		model.addAttribute("n_list", n_list);
+		model.addAttribute("p_num",p_num);
 		return "group";
 	}
 	

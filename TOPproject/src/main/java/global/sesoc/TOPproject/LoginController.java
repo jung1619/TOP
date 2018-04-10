@@ -31,20 +31,27 @@ public class LoginController {
 		User loginedUser = userDao.searchUser(user.getId());
 		
 		//세션을 담음
-		hs.setAttribute("loginedId", loginedUser.getId());
-		String groupList = loginedUser.getP_num_list();
-		String [] groupArr = groupList.split("/");
+		
+		
+		if(user.getId().equals(loginedUser.getId())&&user.getPw().equals(loginedUser.getPw())){
+			hs.setAttribute("loginedId", loginedUser.getId());
+			String groupList = loginedUser.getP_num_list();
+			String [] groupArr = groupList.split("/");
+			model.addAttribute("groupList",groupArr);
+		}else{
+			System.out.println("로그인 실패");
+		}
+		
 	
-		//모델로 보내줌
-		model.addAttribute("groupList",groupArr);
+		
+		
 		
 		return "personal";
 	}//login()
 	
 	
 	@RequestMapping(value="logout", method=RequestMethod.GET)
-	public String logout( HttpSession hs ){
-		
+	public String logout(HttpSession hs){
 		hs.invalidate();
 		return "redirect:/";
 	}//logout

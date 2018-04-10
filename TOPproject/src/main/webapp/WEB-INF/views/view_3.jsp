@@ -29,7 +29,7 @@
 	
 	
 	function onOpen(){
-		
+		console.log("onOpen");
 		$("#chatLogView").append("채팅에 입장하였습니다.<br>");
 		
 	}
@@ -37,6 +37,7 @@
 	
 	//버튼을 클릭할때마다 sock으로 보낸다.
 	function sendMessage(){
+		console.log("sendMessage");
 		var message = $("#message").val();
 		sock.send(message);//핸들러의 Textmessage로감
 		$("#message").val("");
@@ -45,14 +46,16 @@
 	
 	//evt파라미터는 웹소켓을 보내준다 데이터다. (자동으로 들어옴)
 	function onMessage(evt){
+		console.log("onMessage");
 		var data= evt.data;
-		console.log("접속확인");
+		console.log("접속확인 :" +data);
 		$("#chatLogView").append(data+"<br>");
 		
 	}
 	
 	//채팅 종료
 	function onClose(evt){
+		console.log("onClose")
 		$("#data").append("연결끊김");
 	}
 	
@@ -159,7 +162,7 @@
 		
 		
 		<div class="chatLogView" id="chatLogView">
-			채팅내용
+			
 		</div>
 		
 		<div class="outer_chatEditor">

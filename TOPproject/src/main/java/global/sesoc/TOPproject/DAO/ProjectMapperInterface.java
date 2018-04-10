@@ -18,6 +18,10 @@ public interface ProjectMapperInterface {
 	public int updateProjectNotice(Memo memo);
 	
 	public int deleteProjectNotice(Memo memo);
+	//공지리스트불러오기
 	public ArrayList<Notice> noticeList(String p_num);
+	
+	//멤버리스트불러오기
+	public String memberList(String p_num);
 	
 }
