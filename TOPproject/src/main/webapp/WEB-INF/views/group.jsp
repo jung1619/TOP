@@ -224,7 +224,7 @@ var dataset = [
 
 <div class="one">
 	<div class="two">
-		<span class="center">회의하기</span>
+		<span class="center"><a href="chat?p_num=${p_num}">회의하기</a></span><!--여기 들어가있습니다.  -->
 	</div>
 	<div class="groupName">
 		<span class="center"> TOP <br> Take of Project </span>
