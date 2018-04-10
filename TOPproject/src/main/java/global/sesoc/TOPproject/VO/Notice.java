@@ -2,7 +2,7 @@ package global.sesoc.TOPproject.VO;
 
 public class Notice {
 
-	
+	/*Notice*/
 	private String p_num;
 	private String n_content;
 	private String n_indate;
