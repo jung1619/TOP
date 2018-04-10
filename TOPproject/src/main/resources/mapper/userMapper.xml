@@ -43,10 +43,11 @@
   <!-- S E L E C T -->
   
   <select id="searchUser" parameterType="map" resultType="User">
-  	SELECT id, pw, email, name, nickname, company,p_num_list
+  	SELECT id, pw, email, name, nickname, company, p_num_list
   	FROM top_user
   	WHERE id = #{id}
   </select>
+  
   
   <select id="selectSchedule" parameterType="String" resultType="Schedule">
   	SELECT id, startdate, enddate, content, color, deldate, schedule_num
@@ -55,8 +56,15 @@
   </select>
   
   
+  <select parameterType="String" id="searchUserFL" resultType="String"> 
+  	SELECT fl 
+  	FROM friend_list 
+  	WHERE id = #{id} 
+  </select>
+  
+  
   <!-- I N S E R T -->
-  <!--  -->
+
   <insert id="insertUser" parameterType="User">
 	  INSERT INTO top_user(
 	  	id, pw, email, name, nickname

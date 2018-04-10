@@ -1,5 +1,7 @@
 package global.sesoc.TOPproject;
 
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import global.sesoc.TOPproject.DAO.UserDAO;
+import global.sesoc.TOPproject.VO.Schedule;
 import global.sesoc.TOPproject.VO.User;
 
 @Controller
@@ -46,6 +49,14 @@ public class LoginController {
 		
 		
 		
+		//켈린더 관련
+		String id = (String) hs.getAttribute("loginedId");
+		ArrayList<Schedule> scheduleListview = userDao.selectSchedule(id);
+		model.addAttribute("listview", scheduleListview);
+		
+		//네비게이터에 임시로 값 담는 용도
+		String personal = "personal";
+		model.addAttribute("personal", personal);
 		return "personal";
 	}//login()
 	

@@ -25,7 +25,7 @@ public class UserDAO {
 	
 
 	// I N S E R T ------------------------------------------------------------------
-	//
+	
 	
 	public int insertUser(User user){
 		logger.info("회원 등록 : " + user);
@@ -95,6 +95,7 @@ public class UserDAO {
 		return user;
 	}
 	
+	
 	public ArrayList<Schedule> selectSchedule(String id){
 		ArrayList<Schedule> schedule = new ArrayList<Schedule>();
 		try {
@@ -105,6 +106,21 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		return schedule;
+	}
+	
+	
+	public String searchUserFL(String id){
+		logger.info("친구목록 검색 : " + id);
+		
+		UserMapperInterface mapper = sqls.getMapper(UserMapperInterface.class);
+		String fl = "";
+		
+		try{
+			fl = mapper.searchUserFL(id);
+			logger.info("친구목록 검색 성공 : " + fl);
+		}catch(Exception e){ logger.info("친구목록 검색 실패"); e.printStackTrace(); }
+		
+		return fl;
 	}
 	
 	

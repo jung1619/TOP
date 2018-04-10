@@ -10,10 +10,11 @@ public class Project {
 	private String p_deldate;
 	
 	public Project(){}
-	public Project(String p_m_id, String p_name, String p_memberlist, String p_deldate) {
+	public Project(String p_m_id, String p_name, String p_memberlist, String p_indate, String p_deldate) {
 		this.p_m_id = p_m_id;
 		this.p_name = p_name;
 		this.p_memberlist = p_memberlist;
+		this.p_indate = p_indate;
 		this.p_deldate = p_deldate;
 	}
 	
