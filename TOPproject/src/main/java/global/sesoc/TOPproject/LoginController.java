@@ -28,36 +28,40 @@ public class LoginController {
 	
 	
 	@RequestMapping(value="login", method=RequestMethod.POST)
-	public String login(User user, HttpSession hs,Model model){
+	public String login(User user, HttpSession hs, Model model){
 		logger.info("로그인 시도 : " + user);
 		
 		User loginedUser = userDao.searchUser(user.getId());
 		
-		//세션을 담음
 		
-		
-		if(user.getId().equals(loginedUser.getId())&&user.getPw().equals(loginedUser.getPw())){
+		if( user.getPw().equals(loginedUser.getPw()) ){
+			
 			hs.setAttribute("loginedId", loginedUser.getId());
+			
 			String groupList = loginedUser.getP_num_list();
-			String [] groupArr = groupList.split("/");
-			model.addAttribute("groupList",groupArr);
+			if( groupList != null ){				
+				String [] groupArr = groupList.split("/");
+				model.addAttribute("groupList", groupArr);
+			}
+			
+			//켈린더 관련
+			String id = (String) hs.getAttribute("loginedId");
+			ArrayList<Schedule> scheduleListview = userDao.selectSchedule(id);
+			model.addAttribute("listview", scheduleListview);
+			
+			//네비게이터에 임시로 값 담는 용도
+			String personal = "personal";
+			model.addAttribute("personal", personal);
+			
+			logger.info("로그인 시도 성공");
+			return "personal";
 		}else{
-			System.out.println("로그인 실패");
+			model.addAttribute("msg", "입력하신 아이디와 비밀번호를 다시 확인해 주십시오.");
+			
+			logger.info("로그인 시도 실패");
+			return "home";
 		}
 		
-	
-		
-		
-		
-		//켈린더 관련
-		String id = (String) hs.getAttribute("loginedId");
-		ArrayList<Schedule> scheduleListview = userDao.selectSchedule(id);
-		model.addAttribute("listview", scheduleListview);
-		
-		//네비게이터에 임시로 값 담는 용도
-		String personal = "personal";
-		model.addAttribute("personal", personal);
-		return "personal";
 	}//login()
 	
 	

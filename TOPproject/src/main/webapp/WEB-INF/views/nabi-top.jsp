@@ -3,6 +3,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<head>
+	<script type="text/javascript">
+	$(function() {
+		<c:if test="${msg != ''}">
+			alert(msg);
+		</c:if>
+	});
+	</script>
+</head>
+
 <body>
 <div class="w3-top shadow">
   <div class="w3-row w3-white" id="myNavbar">
