@@ -105,31 +105,49 @@ var dataset = [
     	          });
     	      },
     	      eventClick:  function(event, jsEvent, view) {
-    	    	    $('#startTime').val(moment(event.start).format('YYYY-MM-DD')+'T'+moment(event.start).format('HH:mm'));
-    	    	    $('#endTime').val(moment(event.end).format('YYYY-MM-DD')+'T'+moment(event.end).format('HH:mm'));
-    	            
-    	    	    $("#eventInfo").html(event.description);
-    	            $("#eventLink").attr('href', event.url);
-    	            $("#eventContent").dialog({ modal: true, title: event.title, width:350});
-    	            $('.modalTitle').html(event.title);
-    	            //$('#modalId').html(event.id);
-    	            $('#modalId').attr('value', event.id);
-    	            $('.modalTitle').attr('value', event.title);
-    	            $('#modalBody').html(event.description);
-    	            $('#eventUrl').attr('href',event.url);
-    	            $('#fullCalModal').modal();
-    	        }
-    	    });
-    	  });
- 
+  	    	    $('.startTime').val(moment(event.start).format('YYYY-MM-DD')+'T'+moment(event.start).format('HH:mm'));
+  	    	    $('.endTime').val(moment(event.end).format('YYYY-MM-DD')+'T'+moment(event.end).format('HH:mm'));
+  	            
+  	    	    $('.startTime1').html(moment(event.start).format('YYYY')+'년 '
+  	    	    		+moment(event.start).format('MM')+'월 '
+  	    	    		+moment(event.start).format('DD')+'일 '
+  	    	    		+moment(event.start).format('HH')+'시 '
+  	    	    		+moment(event.start).format('mm')+'분 '
+  	    	    		);
+  	    	    $('.endTime1').html(moment(event.end).format('YYYY')+'년 '
+  	    	    		+moment(event.end).format('MM')+'월 '
+  	    	    		+moment(event.end).format('DD')+'일 '
+  	    	    		+moment(event.end).format('HH')+'시 '
+  	    	    		+moment(event.end).format('mm')+'분 '
+  	    	    		);
+  	    	    
+  	    	    $("#eventInfo").html(event.description);
+  	            $("#eventLink").attr('href', event.url);
+  	            $("#eventContent").dialog({ modal: true, title: event.title, width:350});
+  	            $('.modalTitle').html(event.title);
+  	            //$('#modalId').html(event.id);
+  	            $('.modalId').attr('value', event.id);
+  	            $('#modalIdUP').attr('value', event.id);
+  	            $('.modalTitle').attr('value', event.title);
+  	            $('#modalBody').html(event.description);
+  	            $('#eventUrl').attr('href',event.url);
+  	            $('#fullCalModal').modal();
+  	        }
+  	    });
+  	  });
 
- 
- function addFriend(sessionId, friendId) {
+function deleteProjectSchedule(){
+	 $('#fullCalModal').modal('hide'); 
+	 var schedule_num = document.getElementById('modalIdUP').value;
+	 $('.schedule_num').attr('value', schedule_num);
+	 $('#delcalendar').modal();
+}
+
+function addFriend(sessionId, friendId) {
 	if(confirm(friendId + "를 친구로 추가하시겠습니까?")){
 		location.href = "addFriend?sessionId=" + sessionId + "&friendId=" + friendId;
 	}
 }
- 
  </script>
 
 <style type="text/css">
@@ -137,6 +155,35 @@ var dataset = [
 </style>
 </head>
 <body>
+
+
+<div id="delcalendar" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+                <h4 class="modal-title">일정을 삭제하시겠습니까?</h4>
+            </div>
+            <form action="deleteProjectSchedule" method="post">
+            <div id="modalBody" class="modal-body">
+	            <table>
+	           		 <tr>
+						<td>
+							<input type="hidden" name="p_num" value="${p_num}">
+							<input type="hidden" class="schedule_num" name="schedule_num" required="required">
+						</td>
+					</tr>
+				</table>
+            </div>
+            <div class="modal-footer">
+            <input type="submit" id="eventUrl" class="btn btn-primary" value="삭제">
+            <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+            </div>
+            
+            </form>
+        </div>
+    </div>
+</div>
 
 <div id="fullCalNew" class="modal fade">
     <div class="modal-dialog">
@@ -146,11 +193,11 @@ var dataset = [
                 <h4 class="modal-title">새로운 일정 등록</h4>
             </div>
             <div id="modalBody" class="modal-body">
-            <form action="insertSchedule" method="post">
+            <form action="insertProjectSchedule" method="post">
 	            <table>
 	           		 <tr>
 						<td>
-							<input type="hidden" name="id" value="${sessionScope.loginedId}">
+							<input type="hidden" name="p_num" value="${p_num}">
 							<input type="text" name="content" required="required">
 						</td>
 					</tr>
@@ -182,23 +229,56 @@ var dataset = [
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
                 <h4 class="modal-title modalTitle"></h4>
             </div>
+            <!-- 내 일정으로 추가 -->
+            <div id="modalBody" class="modal-body" style="border-bottom: 1px solid #e5e5e5;">
+            <form action="copyUserSchedule" method="post">
+            	<table>
+            		<tr>
+            			<td>해당 스케쥴을 내 프로젝트에 추가합니다</td>
+            		</tr>
+	           		 <tr>
+						<td>
+							<input type="hidden" name="p_num" value="${p_num}">
+							<input type="hidden" class="modalId" name="schedule_num" required="required">
+							<input type="hidden" class="id" name="id" value="${sessionScope.loginedId}" required="required">
+							<span class="modalTitle"></span><input type="hidden" name="content" class="modalTitle">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							시작시간 : <span class="startTime1"></span>
+							<input type="hidden" class="startTime" name="startdate">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							종료시간 : <span class="endTime1"></span>
+							<input type="hidden" class="endTime" name="enddate">
+						</td>
+					</tr>
+				</table>
+            	<input type="submit" id="eventUrl" class="btn btn-primary" value="추가">
+            </form>
+            </div>
+            <!-- 일정 수정 / 프로젝트 리더만 보이도록 해야함 -->
             <div id="modalBody" class="modal-body">
-            <form action="updateUserSchedule" method="post">
+            <form action="updateProjectSchedule" method="post">
 	            <table>
 	           		 <tr>
 						<td>
-							<input type="hidden" name="schedule_num" id="modalId">
+							<input type="hidden" name="p_num" value="${p_num}">
+							<input type="hidden" id="modalIdUP" name="schedule_num" required="required">
 							<input type="text" name="content" class="modalTitle" required="required">
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<input type="datetime-local" id="startTime" name="startdate">
+							<input type="datetime-local" class="startTime" name="startdate">
 						</td>
 					</tr>
 					<tr>
 						<td>
-							<input type="datetime-local" id="endTime" name="enddate">
+							<input type="datetime-local" class="endTime" name="enddate">
 						</td>
 					</tr>
 				</table>
@@ -207,13 +287,14 @@ var dataset = [
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                <button class="btn btn-primary"><a id="eventUrl" target="_blank">일정 삭제</a></button>
+                <!-- 프로젝트 리더만 보이도록 해야함 -->
+                <button type="button" id="eventUrl" class="btn btn-primary" onclick="javascript:deleteProjectSchedule()">일정 삭제</button>
             </div>
         </div>
     </div>
 </div>
 
-<div class="top">
+<div class="top-group">
 	<span class="topspan1">TOP </span><span class="topspan2"> SMART GROUPWARE</span>
 	
 	
@@ -258,7 +339,6 @@ var dataset = [
 		</tr>
 	</table>
 </div>
-<div id='calendar' class="calendar"></div>
 
 <div class="four">
 	<table class="fourTable">
@@ -319,7 +399,7 @@ var dataset = [
 	<h3>친구목록</h3>
 	${addedFriend}
 </div>
-
+<div id='calendar' class="calendar"></div>
 
 </body>
 </html>

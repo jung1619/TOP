@@ -205,5 +205,18 @@ public class UserDAO {
 		return result;
 	}
 	
+	public int deleteUserSchedule(Schedule schedule){
+		logger.info("회원 스케쥴 삭제 : " + schedule);
+		
+		UserMapperInterface mapper = sqls.getMapper(UserMapperInterface.class);
+		int result = 0;
+		
+		try{
+			result = mapper.deleteUserSchedule(schedule);
+			logger.info("회원 스케쥴 삭제 성공");
+		}catch(Exception e){ logger.info("회원 스케쥴 삭제 실패"); e.printStackTrace(); }
+		
+		return result;
+	}	
 	
 }

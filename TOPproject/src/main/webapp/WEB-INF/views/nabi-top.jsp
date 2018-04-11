@@ -29,6 +29,11 @@
 	    <div class="nabi-col s3">
 	    	<a href="<c:url value='/'/>" class="w3-block nabi-button">HELP</a>
 	    </div>
+	    <c:if test="${sessionScope.loginedId != null}">
+			<div class="nabi-col s3">
+		    	<a href="<c:url value='/personal'/>" class="w3-block nabi-button">개인 페이지</a>
+		    </div>
+		</c:if>
 	</c:if>	
 	
     <!-- 로그인을 했을 때 보이는 메뉴(개인 메뉴까지만 보임. 그룹 페이지는 적용할지 말지 아직 고민중) -->

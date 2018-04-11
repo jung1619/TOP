@@ -242,6 +242,7 @@ a{
 
 .three {
 	float: left;
+	width:60%;
 }
 
 .threeTable {
@@ -279,7 +280,7 @@ a{
 	font-size : 20px;
 }
 
-.fourTable {
+.four {
 	float: right;
 }
 

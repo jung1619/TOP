@@ -62,18 +62,20 @@ public class HomeController {
 
 	// 그룹 수정
 	@RequestMapping(value = "group", method = RequestMethod.GET)
-	public String group(HttpSession hs, ModelMap modelMap,HttpServletRequest req,Model model) {
+	public String group(HttpSession hs, ModelMap modelMap,HttpServletRequest req,Model model, String groupNum) {
 		
 		//켈린더 관련
-		String id = (String) hs.getAttribute("loginedId");
-		ArrayList<Schedule> scheduleListview = userDAO.selectSchedule(id);
+		String p_num = req.getParameter("groupNum");
+		logger.info("p_num : " + p_num);
+		if(p_num == null){
+			p_num = groupNum;
+			logger.info("p_num1 : " + p_num);
+		}
+		ArrayList<Schedule> scheduleListview = projectDAO.selectProjectSchedule(p_num);
+		logger.info("스케쥴 : " + scheduleListview);
 		modelMap.addAttribute("listview", scheduleListview);
 		
-		
-		
-		
 		//공지사항 
-		String p_num = req.getParameter("groupNum");
 		
 		System.out.println("get으로 받아온 파라미터: "+p_num);
 		//p_num을 받아다가 다오로 넣어서 끌어와야함
@@ -90,8 +92,25 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="personal",method=RequestMethod.GET)
-	public String personal(){
+	public String personal(User user, HttpSession hs, Model model){
 		
+		String id = (String) hs.getAttribute("loginedId");
+		User loginedUser = userDAO.searchUser(id);
+			
+		hs.setAttribute("loginedId", loginedUser.getId());
+			
+		String groupList = loginedUser.getP_num_list();
+		if( groupList != null ){				
+			String [] groupArr = groupList.split("/");
+			logger.info("groupArr : " + groupArr);
+			model.addAttribute("groupList", groupArr);
+		}
+		ArrayList<Schedule> scheduleListview = userDAO.selectSchedule(id);
+		model.addAttribute("listview", scheduleListview);
+		
+		//네비게이터에 임시로 값 담는 용도
+		String personal = "personal";
+		model.addAttribute("personal", personal);
 		return "personal";
 	}
 

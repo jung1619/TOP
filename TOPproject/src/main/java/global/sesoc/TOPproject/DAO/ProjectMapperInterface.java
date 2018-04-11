@@ -18,6 +18,11 @@ public interface ProjectMapperInterface {
 	public int updateProjectNotice(Memo memo);
 	
 	public int deleteProjectNotice(Memo memo);
+	public int deleteProjectSchedule(Schedule schedule);
+	
+	//그룹스케쥴 불러오기
+	ArrayList<Schedule> selectProjectSchedule(String p_num);
+		
 	//공지리스트불러오기
 	public ArrayList<Notice> noticeList(String p_num);
 	

@@ -124,7 +124,12 @@ var dataset = [
     	    });
     	  });
  
-
+ function deleteUserSchedule(){
+	 $('#fullCalModal').modal('hide'); 
+	 var schedule_num = document.getElementById('modalId').value;
+	 $('.schedule_num').attr('value', schedule_num);
+	 $('#delcalendar').modal();
+ }
  
  function addFriend(sessionId, friendId) {
 	if(confirm(friendId + "를 친구로 추가하시겠습니까?")){
@@ -174,6 +179,37 @@ var dataset = [
 				<a href="group?groupNum=${group}">${group}그룹</a><br>
 		</c:forEach>
 	</div>
+</div>
+
+
+<div id='calendar' class="calendarP"></div>
+
+<div id="delcalendar" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+                <h4 class="modal-title">일정을 삭제하시겠습니까?</h4>
+            </div>
+            <form action="deleteUserSchedule" method="post">
+            <div id="modalBody" class="modal-body">
+	            <table>
+	           		 <tr>
+						<td>
+							<input type="hidden" name="id" value="${sessionScope.loginedId}">
+							<input type="hidden" class="schedule_num" name="schedule_num" required="required">
+						</td>
+					</tr>
+				</table>
+            </div>
+            <div class="modal-footer">
+            <input type="submit" id="eventUrl" class="btn btn-primary" value="삭제">
+            <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+            </div>
+            
+            </form>
+        </div>
+    </div>
 </div>
 
 <div id="fullCalNew" class="modal fade">
@@ -245,13 +281,11 @@ var dataset = [
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                <button class="btn btn-primary"><a id="eventUrl" target="_blank">일정 삭제</a></button>
+                <button type="button" id="eventUrl" class="btn btn-primary" onclick="javascript:deleteUserSchedule()">일정 삭제</button>
             </div>
         </div>
     </div>
 </div>
-
-<div id='calendar' class="calendarP"></div>
 
 <div class="personalFriends">
 	<div class="searchIdForm">

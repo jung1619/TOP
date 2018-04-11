@@ -131,6 +131,19 @@ public class ProjectDAO {
 		return result;
 	}
 	
+	public int deleteProjectSchedule(Schedule schedule){
+		logger.info("프로젝트 스케쥴 삭제 : " + schedule);
+		
+		ProjectMapperInterface mapper = sqls.getMapper(ProjectMapperInterface.class);
+		int result = 0;
+		
+		try{
+			result = mapper.deleteProjectSchedule(schedule);
+			logger.info("프로젝트 스케쥴 삭제 성공");
+		}catch(Exception e){ logger.info("프로젝트 스케쥴 삭제 실패"); e.printStackTrace(); }
+		return result;
+	}
+	
 	
 	//S E L E C T ------------------------------------------------------------------
 	
@@ -152,6 +165,24 @@ public class ProjectDAO {
 		}
 		
 		return  n_list;
+	}
+	
+	public ArrayList<Schedule> selectProjectSchedule(String p_num){
+		System.out.println(p_num);
+		ArrayList<Schedule> schedule = new ArrayList<Schedule>();
+		
+		ProjectMapperInterface mapper = sqls.getMapper(ProjectMapperInterface.class);
+		
+		try{
+			schedule = mapper.selectProjectSchedule(p_num);
+			logger.info(p_num + " 프로젝트 스케쥴 리스트 ");
+		}catch(Exception e){
+			
+			logger.info("프로젝트 불러오기 실패");
+			e.printStackTrace();
+		}
+		
+		return  schedule;
 	}
 	
 	
