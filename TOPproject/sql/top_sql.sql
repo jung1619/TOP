@@ -8,7 +8,7 @@ DROP SEQUENCE s_u_seq;
 DROP TABLE schedule_user;
 DROP SEQUENCE s_p_seq;
 DROP TABLE schedule_project;
-DROP TABLE CHAT;
+DROP TABLE chat;
 
 
 CREATE TABLE top_user ( 
@@ -39,8 +39,10 @@ CREATE TABLE top_project(
     p_m_id VARCHAR2(30) NOT NULL,
     p_name VARCHAR2(30) NOT NULL,
     p_memberlist VARCHAR2(100) NOT NULL,
-    p_indate DATE,
+    p_indate DATE DEFAULT SYSDATE,
     p_deldate DATE,
+    p_startdate DATE NOT NULL,
+    p_enddate DATE NOT NULL,
     CONSTRAINT PK_top_project PRIMARY KEY(p_num)
 );
 

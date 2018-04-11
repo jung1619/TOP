@@ -156,7 +156,7 @@ var loginedId = '<%=(String)session.getAttribute("loginedId")%>';
 	    <input hidden="loginedId" value="${sessionScope.loginedId}">
 	    <input type="text" placeholder="프로젝트명" id="projacename" class="joinText" /><br>
 	    
-	    <label for="fl">프로젝트 구성원을 선택하십시오. (현재 친구 상태인 유저만 추가 가능합니다.)</label><br><br>
+	    <label for="fl">프로젝트 구성원을 선택하십시오.<br>(현재 친구 상태인 유저만 추가 가능합니다.)</label><br><br>
 	    <input type="text" placeholder="아이디로 검색할 수 있습니다." class="joinText" id="fl">
 	    
 	    

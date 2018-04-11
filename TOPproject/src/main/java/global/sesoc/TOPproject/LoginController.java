@@ -20,7 +20,7 @@ import global.sesoc.TOPproject.VO.User;
 @Controller
 public class LoginController {
 	
-	private final static Logger logger= LoggerFactory.getLogger(JoinController.class);
+	private final static Logger logger= LoggerFactory.getLogger(LoginController.class);
 	
 	
 	@Inject

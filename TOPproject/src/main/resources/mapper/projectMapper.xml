@@ -34,15 +34,37 @@
   
   <!-- S E L E C T -->
   
+  <select id="noticeList"  parameterType="String" resultType="Notice">
+  SELECT
+  	 p_num
+  	,n_content
+  	,n_indate
+  	,n_deldate
+  FROM
+   	notice
+  WHERE
+    p_num = #{p_num} 	
+  
+  </select>
+  
+  <select id="memberList" parameterType="String" resultType="String">
+  SELECT
+  	p_memberlist
+  FROM
+   	top_project
+  WHERE
+  	p_num=#{p_num} 	
+  </select>
   
   
   <!-- I N S E R T -->
  
   <insert id="insertProject" parameterType="Project">
 	INSERT INTO top_project(
-	  p_num, p_m_id, p_name, p_memberlist
+	  p_num, p_m_id, p_name, p_memberlist, p_startdate, p_enddate
 	)values(
-	  p_num_seq.NEXTVAL, #{p_m_id}, #{p_name}, #{p_memberlist} 
+	  p_num_seq.NEXTVAL, #{p_m_id}, #{p_name}, #{p_memberlist}, 
+	  TO_DATE(#{p_startdate}, 'yyyyMMddhh24miss'), TO_DATE(#{p_enddate}, 'yyyyMMddhh24miss')
 	)
   </insert>
   
@@ -72,37 +94,8 @@
   	SET n_deldate = SYSDATE
   	WHERE p_num = #{p_num}
   </update>
-  <!-- S E L E C T -->
-  <select id="noticeList"  parameterType="String" resultType="Notice">
-  SELECT
-  	 p_num
-  	,n_content
-  	,n_indate
-  	,n_deldate
-  FROM
-   	notice
-  WHERE
-    p_num = #{p_num} 	
-  
-  </select>
-  
-  <select id="memberList" parameterType="String" resultType="String">
-  SELECT
-  	p_memberlist
-  FROM
-   	top_project
-  WHERE
-  	p_num=#{p_num} 	
   
   
-  </select>
-  
- 
-  
-  
-  
-  
- 
   
   
   </mapper>

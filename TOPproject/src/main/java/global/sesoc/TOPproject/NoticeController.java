@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class NoticeController {
 	
-	private final static Logger logger= LoggerFactory.getLogger(JoinController.class);
+	private final static Logger logger= LoggerFactory.getLogger(NoticeController.class);
 	
 	@RequestMapping(value="NoticeInsert", method=RequestMethod.POST)
 	public String boardinsert(String context){

@@ -10,7 +10,8 @@ $(function() {
 		dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
 		monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 		minDate: 0, 
-        maxDate: "+100Y"
+        maxDate: "+100Y",
+    	dateFormat: 'yy-mm-dd'
 	});
 	$( "#datepicker_end" ).datepicker({
 		changeMonth: true,
@@ -18,7 +19,8 @@ $(function() {
 		dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 
 		monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
 		minDate: +1, 
-        maxDate: "+100Y"
+        maxDate: "+100Y",
+        dateFormat: 'yy-mm-dd'
 	});
 	
 	
@@ -58,11 +60,14 @@ $(function() {
 function create(){
 	var p_name = $('#projacename').val();
 	var p_memberlist = '';
-	var p_indate = $('#datepicker_start').val();
-	var p_deldate = $('#datepicker_end').val();
+	var p_startdate = $('#datepicker_start').val();
+	p_startdate = parseInt(p_startdate.replace(/-/gi, ""));
+	var p_enddate = $('#datepicker_end').val();
+	p_enddate = parseInt(p_enddate.replace(/-/gi, ""));
 	
-	if( (p_name != '') && (memberList.length >= 1) && (p_indate != '') && (p_deldate != '') ){
-		if( parseInt(p_indate.replace("/","")) < parseInt(p_deldate.replace("/","")) ){
+	
+	if( (p_name != '') && (memberList.length >= 1) && (p_startdate != '') && (p_enddate != '') ){
+		if( p_startdate < p_enddate ){
 			
 			for( var i in memberList ){ 
 				p_memberlist += ('/' + memberList[i]); 
@@ -76,12 +81,15 @@ function create(){
 						'p_name' : p_name, //인원, 시작일마감일
 						'p_m_id' : loginedId,
 						'p_memberlist' : p_memberlist,
-						'p_indate' : p_indate,
-						'p_deldate' : p_deldate
+						'p_startdate' : p_startdate + "000000",
+						'p_enddate' : p_enddate + "235959"
 					},
 					success : function( data ){ 
-						alert('프로젝트 생성이 완료되었습니다.');
-						location.href = "personal";
+						if( data == '1' ){							
+							alert('프로젝트 생성이 완료되었습니다.');
+							location.href = "personal";
+						}else
+							alert('프로젝트 생성에 실패하였습니다.');
 					},
 					error : function( err ){ $('#errpage').html( JSON.stringify(err) ); }
 				});//ajax	

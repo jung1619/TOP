@@ -61,9 +61,13 @@ public class GroupController {
 	public String createProject(Project project){
 		logger.info("프로젝트 생성 시도 : " + project);
 		
-	//	int result = pDao.insertProject(project);
+		int result = pDao.insertProject(project);
+		if( result == 1 )
+			return "1";
+		else
+			return "2";
 		
-		return "group";
+	//	return "group";
 	}
 	
 	
