@@ -131,11 +131,7 @@ var dataset = [
 	 $('#delcalendar').modal();
  }
  
- function addFriend(sessionId, friendId) {
-	if(confirm(friendId + "를 친구로 추가하시겠습니까?")){
-		location.href = "addFriend?sessionId=" + sessionId + "&friendId=" + friendId;
-	}
-}
+
  </script>
 
 <style type="text/css">
@@ -287,26 +283,21 @@ var dataset = [
     </div>
 </div>
 
-<div class="personalFriends">
-	<div class="searchIdForm">
-		<form action="idSearch" method="POST">
-			<input type="text" name="searchId" id="searchId" class="searchId" placeholder="친구 ID 검색">
-			<input type="submit" value="Search" class="searchButton"> <br />
-				
-			<c:choose>
-				<c:when test="${result != null}">
-					${searchId} <input type="button" value="+" onclick="addFriend('${sessionId}', '${searchId}')">
-				</c:when>
-				<c:when test="${result == null}">
-					없는 ID입니다.			
-				</c:when>
-			</c:choose>
-		</form>
+<div class="searchId">
+	<h3>친구검색</h3>
+		<input type="text" name="searchId" id="searchId" placeholder="ID Here...">
+		<input type="button" id="searchBtn" value="Search"> <br />
+	<br />
+	<div class="searchedId">
+		<a id="idSearchDiv"></a>
+		<input type="button" id="addBtn" value="ADD">
 	</div>
-	<div class="friendList">
-		<h3>친구목록</h3>
-		${addedFriend}
-	</div>
+
 </div>
+<div class="friendList">
+	<h3>친구목록</h3>
+	<div id="addedFriendDiv">${fList}</div>
+</div>
+
 </body>
 </html>

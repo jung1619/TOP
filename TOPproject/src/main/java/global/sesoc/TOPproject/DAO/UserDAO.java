@@ -145,10 +145,18 @@ public class UserDAO {
 		logger.info("회원 친구목록 수정 : " + id + ", " + fl);
 		
 		UserMapperInterface mapper = sqls.getMapper(UserMapperInterface.class);
-		
+
+		String fList = mapper.searchUserFL(id);
+		if(fList.equals("temp")) {
+			fList = fl;
+		}
+		else if(fList != null) {
+			fList += "/" + fl;			
+		}
+
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
-		map.put("fl", fl);
+		map.put("fl", fList);
 		int result = 0;
 		
 		try{

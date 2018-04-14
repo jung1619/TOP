@@ -132,38 +132,43 @@ public class HomeController {
 	}
 
 	// 친구검색
+	@ResponseBody
 	@RequestMapping(value = "idSearch", method = RequestMethod.POST)
-	public String idSearch(String searchId, Model model, HttpSession session) {
+	public String idSearch(String searchId, HttpSession session) {
 		logger.info("친구검색 시도 : " + searchId);
-
-		boolean result = false;
-		String sessionId = (String) session.getAttribute("loginedId");
-		model.addAttribute("sessionId", sessionId);
-		
-		User loginedUser = userDAO.searchUser(searchId);
-		model.addAttribute("searchId", loginedUser.getId());
-		model.addAttribute("result", loginedUser);
-
+		User user = userDAO.searchUser(searchId);
 		logger.info("친구검색 종료 : " + searchId);
+		logger.info("sessionId : " + session.getAttribute("loginedId"));
 
-		return "group";
+		if(user != null && !(session.getAttribute("loginedId").equals(searchId))) {
+			logger.info("success");
+			return user.getId();
+		}
+		else {
+			logger.info("failed");
+			return "failed";
+		}
+		
 	}
 	
 	//친구추가
-	@RequestMapping(value = "addFriend", method = RequestMethod.GET)
-	public String addFriend(String sessionId, String friendId, Model model) {
-		logger.info("친구추가 시도 : " + sessionId + friendId);
+	@ResponseBody
+	@RequestMapping(value = "friendAdd", method = RequestMethod.POST)
+	public String friendAdd(String searchId, HttpSession session) {
+		logger.info("친구추가 시도 : " + searchId);
+
+		String sessionId = (String) session.getAttribute("loginedId");
+		logger.info(sessionId);
+		logger.info(searchId);
+		//친구목록꺼내기
+		userDAO.updateFriendList(sessionId, searchId);
+		String fList = userDAO.searchUserFL(sessionId);
+		logger.info(fList);
+		logger.info("친구추가 종료 : " + searchId);
 		
-		int result = userDAO.updateFriendList(sessionId, friendId);
 		
-		model.addAttribute("addedFriend", friendId);
-		
-		logger.info("친구추가 종료 : " + sessionId + friendId);
-		
-		return "group";
+		return fList;
 	}
-	
-	
-	
+
 
 }// class

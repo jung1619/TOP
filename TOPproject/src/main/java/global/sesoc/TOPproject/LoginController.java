@@ -44,6 +44,10 @@ public class LoginController {
 				model.addAttribute("groupList", groupArr);
 			}
 			
+			//친구리스트
+			String fList = userDao.searchUserFL(loginedUser.getId());
+			model.addAttribute("fList", fList);
+			
 			//켈린더 관련
 			String id = (String) hs.getAttribute("loginedId");
 			ArrayList<Schedule> scheduleListview = userDao.selectSchedule(id);

@@ -143,11 +143,6 @@ function deleteProjectSchedule(){
 	 $('#delcalendar').modal();
 }
 
-function addFriend(sessionId, friendId) {
-	if(confirm(friendId + "를 친구로 추가하시겠습니까?")){
-		location.href = "addFriend?sessionId=" + sessionId + "&friendId=" + friendId;
-	}
-}
  </script>
 
 <style type="text/css">
@@ -372,34 +367,6 @@ function addFriend(sessionId, friendId) {
 		</tr>
 	</table>
 </div>
-
-
-<div class="searchId">
-	<h3>친구검색</h3>
-	<form action="idSearch" method="POST">
-		<input type="text" name="searchId" id="searchId" class="searchId" placeholder="ID Here...">
-		<input type="submit" value="Search"> <br />
-		
-		<c:choose>
-			<c:when test="${result != null}">
-				${searchId} <input type="button" value="+" onclick="addFriend('${sessionId}', '${searchId}')">
-			</c:when>
-			<c:when test="${result == null}">
-				없는 ID입니다.			
-			</c:when>
-		
-		</c:choose>
-		
-	</form>
-	<br />
-
-</div>
-
-<div class="friendList">
-	<h3>친구목록</h3>
-	${addedFriend}
-</div>
-<div id='calendar' class="calendar"></div>
 
 </body>
 </html>
