@@ -299,7 +299,11 @@ var dataset = [
 </div>
 <div class="friendList">
 	<h3>친구목록</h3>
-	<div id="addedFriendDiv">${fList}</div>
+	<div id="addedFriendDiv">
+	<c:forEach var="friend" items="${fList}">
+			<a>${friend}</a> <br />
+		</c:forEach>
+	</div>
 </div>
 
 </body>

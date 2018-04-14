@@ -57,6 +57,15 @@
   	p_num=#{p_num} 	
   </select>
   
+    <select id="selectPm" parameterType="String" resultType="String">
+  SELECT
+  	p_m_id
+  FROM
+   	top_project
+  WHERE
+  	p_num=#{p_num}
+  </select>
+  
   <select id="selectProjectSchedule" parameterType="String" resultType="Schedule">
 	 SELECT p_num, startdate, enddate, content, color, schedule_num
 	 FROM schedule_project

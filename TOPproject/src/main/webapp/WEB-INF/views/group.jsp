@@ -307,9 +307,27 @@ function deleteProjectSchedule(){
 	</div>
 	<div class="groupMember">
 		<div class="memberTitle"> MEMBER LIST </div>
-		<div class="member">
+		<div class="member">	
+			<!--프로젝트매니져-->
+			<img src="./resources/img/pm.png" style="width:20px;"/> ${pm} <br />
 			
-			<div class="pm"><img src="./resources/img/pm.png" style="width:20px;"/> 정광철</div>
+			<!-- 일반멤버 -->
+			<c:choose>
+				<c:when test="${loginedId == pm}">
+					<c:forEach var="member" items="${mList}">
+						<a>${member}</a>
+						<input type="button" id="mDel" value="삭제">
+						<br />
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<c:forEach var="member" items="${mList}">
+						<a>${member}</a>
+						<br />
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+			
 		</div>
 	</div>
 </div>

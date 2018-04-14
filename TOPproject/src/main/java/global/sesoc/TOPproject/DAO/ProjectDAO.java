@@ -193,21 +193,31 @@ public class ProjectDAO {
 		ProjectMapperInterface mapper=  sqls.getMapper(ProjectMapperInterface.class);
 		
 		try{
-			
 			p_memberList = mapper.memberList(p_num);
 			logger.info("DAO p_memberList : "+p_memberList);
-			
-			
-			
 		}catch(Exception e){
-			
 			logger.info("memberList불러오기 실패");
 			e.printStackTrace();
 		}
 		
+		return p_memberList;			
+	}
+	
+	public String selectPm(String p_num){
+		String pm = "";
 		
+		logger.info("DAO p_num : "+p_num);
+		ProjectMapperInterface mapper=  sqls.getMapper(ProjectMapperInterface.class);
 		
-		return p_memberList;
+		try{
+			pm = mapper.selectPm(p_num);
+			logger.info("DAO pm : "+ pm);
+		}catch(Exception e){
+			logger.info("pm 불러오기 실패");
+			e.printStackTrace();
+		}
+		
+		return pm;
 		
 				
 	}

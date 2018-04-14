@@ -75,6 +75,24 @@ public class HomeController {
 		logger.info("스케쥴 : " + scheduleListview);
 		modelMap.addAttribute("listview", scheduleListview);
 		
+		//일반멤버
+		String memberList = projectDAO.memberList(groupNum);
+		System.out.println(memberList);
+		
+		if( memberList != null ){				
+			String [] mList = memberList.split("/");
+			for(String s : mList){
+				System.out.println(s);
+			}
+			logger.info("memberList : " + mList);
+			model.addAttribute("mList", mList);
+		}
+		
+		//프로젝트매니져
+		String pm = projectDAO.selectPm(groupNum);
+		model.addAttribute("pm", pm);
+		
+		
 		//공지사항 
 		
 		System.out.println("get으로 받아온 파라미터: "+p_num);
@@ -160,9 +178,14 @@ public class HomeController {
 		String sessionId = (String) session.getAttribute("loginedId");
 		logger.info(sessionId);
 		logger.info(searchId);
+		
 		//친구목록꺼내기
 		userDAO.updateFriendList(sessionId, searchId);
 		String fList = userDAO.searchUserFL(sessionId);
+//		String [] friendList = fList.split("/");
+//		for(String f : friendList) {
+//			System.out.println(f);
+//		}
 		logger.info(fList);
 		logger.info("친구추가 종료 : " + searchId);
 		

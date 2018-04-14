@@ -46,7 +46,11 @@ public class LoginController {
 			
 			//친구리스트
 			String fList = userDao.searchUserFL(loginedUser.getId());
-			model.addAttribute("fList", fList);
+			String [] friendList = fList.split("/");
+			for(String f : friendList) {
+				System.out.println(f);
+			}
+			model.addAttribute("fList", friendList);
 			
 			//켈린더 관련
 			String id = (String) hs.getAttribute("loginedId");

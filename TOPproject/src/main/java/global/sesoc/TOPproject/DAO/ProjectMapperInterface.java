@@ -29,4 +29,7 @@ public interface ProjectMapperInterface {
 	//멤버리스트불러오기
 	public String memberList(String p_num);
 	
+	//PM 불러오기
+	public String selectPm(String p_num);
+	
 }
