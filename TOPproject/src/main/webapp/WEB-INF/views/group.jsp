@@ -385,6 +385,6 @@ function deleteProjectSchedule(){
 		</tr>
 	</table>
 </div>
-
+<div id='calendar'></div>
 </body>
 </html>
