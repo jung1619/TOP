@@ -41,13 +41,7 @@
 	</mvc:interceptors>
 	
 	
-	<!--echo handler -->
-	<websocket:handlers>
-		<websocket:mapping handler="echoHandler" path="/echo"/>
-		<websocket:sockjs/>
-	</websocket:handlers>
 	
-	<beans:bean id="echoHandler" class="global.sesoc.TOPproject.Chat.EchoHandler"></beans:bean>
 	
 	
 </beans:beans>

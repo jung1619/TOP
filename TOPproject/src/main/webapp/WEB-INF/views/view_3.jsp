@@ -6,59 +6,64 @@
 		<link rel="stylesheet" type="text/css" href="resources/css/view_3.css">
 		
 		<title>conference</title>
-		
-<script type="text/javascript" src="<c:url value='resources/js/jquery-3.2.1.js'/>"></script>
-<script type="text/javascript" src="<c:url value='resources/js/sockjs.js'/>"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$("#sendBtn").click(function(){
+			
+	<script type="text/javascript" src="<c:url value='resources/js/jquery-3.2.1.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='resources/js/sockjs.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='resources/js/stomp.js'/>"></script>
+	
+	
+	<script type="text/javascript">
+	$(function (){
+		connect();
+		$("#send").on("click",function(){
 			sendMessage();
-		});
+		})		
+		document.onkeydown = function (event){
+			if(event.keyCode==116
+				||event.ctrlKey==true && (event.keyCode == 82)){
+				
+				disconnect();
+				event.cancleBubble=true;
+				event.returnValue=false;
+				setTimeout(function(){
+					window.location.reload();
+				},100);
+				return false;
+				
+			}
+		}
 	});
 	
-	var sock;
-	//웹소켓을 지정한 url로 연결한다.
-	sock = new SockJS("<c:url value="/echo"/>");
-	//자바스크립트 안에 function을 집어 놓을  수 있음
-	//데이터가 나한테 전달되었을 때 자동으로 실행되는 function
-	sock.onmessage = onMessage;
-	//데이터를 끊고 싶을 때 실행하는 메소드
-	sock.onclose = onClose;
-	sock.onopen = onOpen;
+	var stompClient= null;
 	
-	
-	
-	function onOpen(){
-		console.log("onOpen");
-		$("#chatLogView").append("채팅에 입장하였습니다.<br>");
-		
+	function connect(){
+		var socket = new SockJS('/TOPproject/endpoint');
+		stompClient = Stomp.over(socket);
+		stompClient.connect({},function(frame){
+			
+			stompClient.subscribe('/subscribe/chat/${p_num}',function(message){
+				var data = JSON.parse(message.body);
+				$('#chatLogView').append(data.nickName+ "님 ->"+data.message+"<br>");
+			});
+			
+		});
 	}
 	
 	
-	//버튼을 클릭할때마다 sock으로 보낸다.
 	function sendMessage(){
-		console.log("sendMessage");
-		var message = $("#message").val();
-		sock.send(message);//핸들러의 Textmessage로감
-		$("#message").val("");
-		console.log("send확인");
-	}
-	
-	//evt파라미터는 웹소켓을 보내준다 데이터다. (자동으로 들어옴)
-	function onMessage(evt){
-		console.log("onMessage");
-		var data= evt.data;
-		console.log("접속확인 :" +data);
-		$("#chatLogView").append(data+"<br>");
+		var str = $('#message').val();
+			stt = str.replace(/ /gi, '&nbsp;')
+			str = str.replace(/(?:\r\n|\r|\n)/g, '<br />');
+			
+			if(str.length>0){
+				stompClient.send("/chat/${p_num}",{}, JSON.stringify({
+							message :str	
+				}));
+				
+			};
+			$("#message").val("");
 		
 	}
-	
-	//채팅 종료
-	function onClose(evt){
-		console.log("onClose")
-		$("#data").append("연결끊김");
-	}
-	
 	
 	</script>
 	<style type="text/css">
@@ -176,7 +181,7 @@
 			
 			<div class="chatEditor_textView">
 				<textarea rows="3" cols="5" id="message"></textarea>
-				<input type="button" value="SEND" id="sendBtn">
+				<input type="button" value="SEND" id="send">
 			</div>
 			
 		</div>
