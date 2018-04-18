@@ -150,7 +150,7 @@ public class UserDAO {
 		if(fList.equals("temp")) {
 			fList = fl;
 		}
-		else if(fList != null) {
+		else if(fList != null && !(fList.contains(fl))) {
 			fList += "/" + fl;			
 		}
 
