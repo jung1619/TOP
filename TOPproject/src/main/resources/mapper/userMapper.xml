@@ -71,10 +71,7 @@
 	  		<if test="company != null"> ,company </if> 
 	  )VALUES(
 	  	#{id}, #{pw}, #{email}, #{name}
-	  		<choose>
-	  			<when test="nickname == null"> ,#{name} </when>
-	  			<otherwise> ,#{nickname} </otherwise>
-	  		</choose>
+	  		<if test="nickname != null"> ,#{nickname} </if>
 	  		<if test="company != null"> ,#{company} </if>
 	  )
   </insert>

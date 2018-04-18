@@ -15,6 +15,7 @@ import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
 
 import global.sesoc.TOPproject.DAO.UserDAO;
+import global.sesoc.TOPproject.VO.User;
 @Component
 public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor{
 	
@@ -33,7 +34,9 @@ public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor{
 		if(request instanceof ServletServerHttpRequest){
 			ServletServerHttpRequest servletRequest = (ServletServerHttpRequest) request;
 			HttpSession session = servletRequest.getServletRequest().getSession();
-			attributes.put("user", dao.searchUser((String)session.getAttribute("loginedId")));
+			User user = dao.searchUser((String)session.getAttribute("loginedId"));
+			System.out.println(user);
+			attributes.put("user", user);
 			
 		}
 

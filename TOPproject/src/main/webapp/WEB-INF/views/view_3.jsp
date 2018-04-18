@@ -13,7 +13,9 @@
 	
 	
 	<script type="text/javascript">
+	var myId = '<%=(String)session.getAttribute("loginedId")%>';
 	$(function (){
+		
 		connect();
 		$("#send").on("click",function(){
 			sendMessage();
@@ -43,7 +45,10 @@
 			
 			stompClient.subscribe('/subscribe/chat/${p_num}',function(message){
 				var data = JSON.parse(message.body);
-				$('#chatLogView').append(data.nickName+ "님 ->"+data.message+"<br>");
+				if( data.id == myId ){
+					$('#chatLogView').append('<div class="mine">'+data.message+"</div><br>");
+				}else
+					$('#chatLogView').append('<div class="other">'+data.nickName+ "님 ->"+data.message+"</div><br>");
 			});
 			
 		});
@@ -67,35 +72,81 @@
 	
 	</script>
 	<style type="text/css">
-
-	#iconList{
-		border-top: 1px solid #EAEAEA;
-		border-bottom: 1px solid #EAEAEA;
-		height: 40px;
-	}
+		
+		.outer{
+			margin: 0 auto;
+			padding: 0 auto;
+		}
+		.outer_editor{
+			width: 80%;
+		}
+		.outer_chat{
+			width: 20%;
+		}
+		.outer_editor, .outer_chat{
+			margin: 0 auto;
+			padding: 0 auto;
+			height: auto;
+		}
+		
+		.mine{
+			text-align: right;
+			background-color: yellow;
+			float: right;
+		}
+		.other{
+			text-align: left;
+			background-color: blue;
+			float: left;
+		}
+		.mine, .other{
+			display: inline-block;
+			-webkit-border-radius: 7px;
+			padding: 4px;
+			margin: 5px;
+			clear: both;
+		}
+		
+		.chatEditor_textView{
+			text-align: center;
+		}
+		.message{
+			resize: none;
+		}
+		.send{
+			width: 300px;
+			height: auto;
+		}
+		
+		
+		#iconList{
+			border-top: 1px solid #EAEAEA;
+			border-bottom: 1px solid #EAEAEA;
+			height: 40px;
+		}
+		
+		.gap{
+			width: 30px;
+			height: 40px;
+			float: left;
+		}
+		
+		.editor_menubar input[type="image"]{
+			margin: 6px 6px 1px 6px;
+			width: 17px;
+		}
+		
+		.paint{
+			background-color: black;
+		}
+		
+		#editR{
+			margin: 10px;
+		}
 	
-	.gap{
-		width: 30px;
-		height: 40px;
-		float: left;
-	}
-	
-	.editor_menubar input[type="image"]{
-		margin: 6px 6px 1px 6px;
-		width: 17px;
-	}
-	
-	.paint{
-		background-color: black;
-	}
-	
-	#editR{
-		margin: 10px;
-	}
-
-</style>
-	</head>
-	<body>
+	</style>
+</head>
+<body>
 	
 	
 	<div class="outer">
@@ -103,52 +154,7 @@
 	
 	<!-- EDITOR -->
 	<div class="outer_editor">
-	
-		<!-- if DOC > 1 -->
-		<!-- if DOC == 1 -->
-		<div class="editor_menubar">
-			<!-- if DOC == WORD -->
-			<div class="gap"></div>
-			<input type="image" src="./resources/icon/if_folder.png" role="button" onclick="javascript:alert('a')" data-tooltip="열기" aria-label="열기">
-			<input type="image" src="./resources/icon/if_page.png" role="button" onclick="" data-tooltip="페이지" aria-label="페이지">
-			<input type="image" src="./resources/icon/if_back.png" role="button" onclick="" data-tooltip="전단계로" aria-label="전단계로">
-			<input type="image" src="./resources/icon/if_forward.png" role="button" onclick="" data-tooltip="앞단계로" aria-label="앞단계로">
-			<input type="image" src="./resources/icon/if_save.png" role="button" onclick="" data-tooltip="저장하기" aria-label="저장하기">
-			<input type="image" src="./resources/icon/if_history.png" role="button" onclick="" data-tooltip="파일저장히스토리" aria-label="파일저장히스토리">
-			<input type="image" src="./resources/icon/if_download.png" role="button" onclick="" data-tooltip="클라우드" aria-label="클라우드">
-			<input type="image" src="./resources/icon/if_print.png" role="button" onclick="" data-tooltip="인쇄" aria-label="인쇄">
-			<input type="image" src="./resources/icon/if_array.png" role="button" onclick="" data-tooltip="정렬" aria-label="정렬">
-			<input type="image" src="./resources/icon/if_find.png" role="button" onclick="" data-tooltip="검색" aria-label="검색">
-			<input type="image" src="./resources/icon/if_copy.png" role="button" onclick="" data-tooltip="복사" aria-label="복사">
-			<input type="image" src="./resources/icon/if_del.png" role="button" onclick="" data-tooltip="서식삭제" aria-label="서식삭제">
-			<input type="image" src="./resources/icon/if_form.png" role="button" onclick="" data-tooltip="리스트" aria-label="리스트">
-			<input type="image" src="./resources/icon/if_help.png" role="button" onclick="" data-tooltip="도움말" aria-label="도움말">
-			<input type="image" src="./resources/icon/if_ite.png" role="button" onclick="" data-tooltip="기울이기" aria-label="기울이기">
-			<input type="image" src="./resources/icon/if_line.png" role="button" onclick="" data-tooltip="셀 선" aria-label="셀 선">
-			<input type="image" src="./resources/icon/if_merger.png" role="button" onclick="" data-tooltip="셀 병합/나누기" aria-label="셀 병합/나누기">
-			<input type="image" src="./resources/icon/if_list.png" role="button" onclick="" data-tooltip="번호 리스트" aria-label="번호 리스트">
-			<input type="image" src="./resources/icon/if_fontsize.png" role="button" onclick="" data-tooltip="글씨크기" aria-label="글씨크기">
-			<input type="image" src="./resources/icon/if_bold.png" role="button" onclick="" data-tooltip="글씨 굵게" aria-label="글씨 굵게">
-			<select>
-				<option>6</option>
-				<option>8</option>
-				<option>10</option>
-				<option>12</option>
-			</select>
-			<input type="image" src="./resources/icon/if_paint.png" role="button" onclick="" class="paint" data-tooltip="색채우기" aria-label="색채우기">
-			<input type="image" src="./resources/icon/if_color.png" role="button" onclick="" class="paint" data-tooltip="글씨색" aria-label="글씨색">
-			<input type="image" src="./resources/icon/if_strike.png" role="button" onclick="" data-tooltip="선긋기" aria-label="선긋기">
-			<input type="image" src="./resources/icon/if_user.png" role="button" onclick="" data-tooltip="유저" aria-label="유저">
-			<input type="image" src="./resources/icon/if_zoom.png" role="button" onclick="" data-tooltip="확대축소" aria-label="확대축소">
-		
-			<!-- if DOC == PPT -->
-			<!-- if DOC == EXCEL -->
-		</div>
-		
-		<!-- 에디터(임시) -->
-		<textarea id="editR" rows="50" cols="170">
-	
-		</textarea>
+		<%@include file="edit.jsp" %>
 	</div>
 	
 	
@@ -167,7 +173,6 @@
 		
 		
 		<div class="chatLogView" id="chatLogView">
-			
 		</div>
 		
 		<div class="outer_chatEditor">
@@ -180,15 +185,14 @@
 			</div>
 			
 			<div class="chatEditor_textView">
-				<textarea rows="3" cols="5" id="message"></textarea>
-				<input type="button" value="SEND" id="send">
+				<textarea rows="5" cols="44" id="message" class="message"></textarea><br>
+				<input type="button" value="SEND" id="send" class="send">
 			</div>
 			
 		</div>
 		
 	</div>
 	
-	
 	</div>
-	</body>
+</body>
 </html>

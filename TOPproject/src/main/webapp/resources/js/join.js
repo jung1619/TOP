@@ -103,6 +103,10 @@ function join(){
 		
 		console.log(id + pw + email + company);
 		
+		if( nickname == '' ){
+			nickname = name;
+		}
+		
 		$.ajax({
 			url :'join',
 			type : 'POST',
