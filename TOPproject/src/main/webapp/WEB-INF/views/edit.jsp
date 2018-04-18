@@ -22,6 +22,20 @@
 			alert(testT);
 			return true;
 		}
+		
+		/* 드디어 성공이다!!!!! */
+		$(document).ready(function(){
+		var editor = CKEDITOR.instances.editor1;
+		
+		editor.on('change',function(evt){
+			var context = $("#editor1").val();
+			console.log(context);
+			
+			alert("가즈아!");
+		})
+		
+			
+		});
 	</script>
 	<style type="text/css">
 	
