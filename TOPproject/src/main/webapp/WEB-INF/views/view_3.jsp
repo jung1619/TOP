@@ -89,6 +89,7 @@
 			height: auto;
 		}
 		
+		
 		.mine{
 			text-align: right;
 			background-color: yellow;

@@ -65,6 +65,7 @@
   
   <!-- I N S E R T -->
 
+
   <insert id="insertUser" parameterType="User">
 	  INSERT INTO top_user(
 	  	id, pw, email, name, nickname
