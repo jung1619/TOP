@@ -179,9 +179,12 @@ public class HomeController {
 		logger.info(sessionId);
 		logger.info(searchId);
 		
-		//친구목록꺼내기
+		
 		userDAO.updateFriendList(sessionId, searchId);
+		
+		//친구목록꺼내기
 		String fList = userDAO.searchUserFL(sessionId);
+		System.out.println(fList);
 //		String [] friendList = fList.split("/");
 //		for(String f : friendList) {
 //			System.out.println(f);
