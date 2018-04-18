@@ -48,7 +48,6 @@
 	<div class="container">
 		<form action="testUP" method="post" onsubmit="return test1()">
 			<textarea name="text" id="editor1">
-			<input type="text">
 				
 				&lt;h2 style="text-align: center;"&gt;The Flavorful Tuscany Meetup&lt;/h2&gt;
 				&lt;p style="text-align: center;"&gt;&lt;span style="color: #007ac9;"&gt;&lt;strong&gt;Welcome letter&lt;/strong&gt;&lt;/span&gt;&lt;/p&gt;
@@ -86,6 +85,7 @@
 				&lt;p&gt;&lt;strong&gt;Victoria Valc&lt;/strong&gt;&lt;/p&gt;
 				&lt;p&gt;&lt;strong&gt;Event Manager&lt;/strong&gt;&lt;/p&gt;
 				&lt;p&gt;&lt;strong&gt;Bilancino Hotel&lt;/strong&gt;&lt;/p&gt;
+				
 			</textarea>
 			<input type="submit" value="저장">
 		</form>
