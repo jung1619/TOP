@@ -11,6 +11,8 @@
 		<typeAlias type="global.sesoc.TOPproject.VO.Memo" alias="Memo" />
 		<!--Notice추가  -->
 		<typeAlias type="global.sesoc.TOPproject.VO.Notice" alias="Notice" />
+		<!--Contextr 추가  -->
+		<typeAlias type="global.sesoc.TOPproject.VO.Context" alias="Context"/>
 	</typeAliases>
 	
 	<mappers>

@@ -37,9 +37,7 @@
   	UPDATE 
   		context
   	SET
-  		p_num = #{p_num}
   		context = #{context}
-  		title = #{title}
   	WHERE 
   		p_num = #{p_num}
   </update>
@@ -131,17 +129,15 @@
   </insert>
   
   <insert id="insertContext" parameterType="Context">
-  	INSER INTO
-  	 	context(
-  	 	p_num
-  	 	,context
-  	 	,title
- 	)VALUES(
- 		#{p_num}
- 		,#{context}
- 		,#{title}
- 	)
-  
+  	INSERT INTO context(
+  		p_num
+  		,context
+  		,title 
+  	)VALUES(
+  		#{p_num}
+  		,#{context}
+  		,#{title}
+  	)
   
   </insert>
   

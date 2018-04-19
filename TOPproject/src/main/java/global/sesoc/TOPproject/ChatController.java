@@ -58,7 +58,9 @@ public class ChatController {
 		logger.info("chatcotroller에서 받음+p_num추가: "+context);
 		
 		
-		if(projectDAO.selectContext(p_num)!=null){
+		if(projectDAO.selectContext(p_num)==null){
+			
+			logger.info("DB에 존재 하지 않을 경우");
 			//임시 제목
 			context.setTitle("title");
 			logger.info("new context="+context);
@@ -69,6 +71,7 @@ public class ChatController {
 			
 		}else{
 			//context가 있으면 update함 
+			logger.info("DB에 존재하는 경우");
 			projectDAO.upDateContext(context);
 		}
 		
