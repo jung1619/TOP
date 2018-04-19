@@ -94,6 +94,7 @@ CREATE TABLE schedule_project(
 
 CREATE TABLE chat(
     p_num NUMBER NOT NULL,
+    log_num NUMBER NOT NULL,
     chat_log CLOB NOT NULL,
     CONSTRAINT FK_top_project_chat FOREIGN KEY(p_num)
     REFERENCES top_project (p_num) on delete cascade
