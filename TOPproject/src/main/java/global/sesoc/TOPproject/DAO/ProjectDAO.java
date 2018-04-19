@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import global.sesoc.TOPproject.HomeController;
+import global.sesoc.TOPproject.VO.Context;
 import global.sesoc.TOPproject.VO.Memo;
 import global.sesoc.TOPproject.VO.Notice;
 import global.sesoc.TOPproject.VO.Project;
@@ -26,6 +27,20 @@ public class ProjectDAO {
 	
 	
 	// I N S E R T ------------------------------------------------------------------
+	public void insertContext(Context context){
+		logger.info("context생성 = "+context);
+		
+		ProjectMapperInterface mapper = sqls.getMapper(ProjectMapperInterface.class);
+		
+		try{
+			mapper.insertContext(context);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+	
 	
 	
 	public int insertProject(Project project){
@@ -115,6 +130,19 @@ public class ProjectDAO {
 	}
 	
 	
+	public void upDateContext(Context context){
+		ProjectMapperInterface mapper = sqls.getMapper(ProjectMapperInterface.class);
+			
+		
+		try{
+			mapper.upDateContext(context);
+			logger.info("context Insert complete");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+
+	}
+	
 	// D E L E T E ------------------------------------------------------------------
 	
 	
@@ -146,6 +174,23 @@ public class ProjectDAO {
 	
 	
 	//S E L E C T ------------------------------------------------------------------
+	
+	public Context selectContext(String p_num){
+		Context result_context=null;
+		
+		ProjectMapperInterface mapper = sqls.getMapper(ProjectMapperInterface.class);
+		
+		try{
+			result_context = mapper.selectContext(p_num);
+			logger.info("selectContext in DOA : " +result_context);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+		return result_context;
+		
+	}
+	
 	
 	
 	public ArrayList<Notice> noticeList(String p_num){

@@ -52,6 +52,16 @@
 						}else
 							$('#chatLogView').append('<div class="other">'+data.nickName+ "님 ->"+data.message+"</div><br>");
 					});
+					
+					stompClient.subscribe('/subscribe/chat/${p_num}/context',function(context){
+						
+						var data = JSON.parse(context.body);
+						console.log("받아보자:"+data.context); 
+						
+						$("#editor1").html(data.context);
+					
+						
+					});
 				});
 			}
 			

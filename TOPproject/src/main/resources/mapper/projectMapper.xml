@@ -32,6 +32,18 @@
   	WHERE p_num = #{p_num}
   </update>
   
+  <!-- 정광철 context적용   update-->
+  <update id="upDateContext" parameterType="Context">
+  	UPDATE 
+  		context
+  	SET
+  		p_num = #{p_num}
+  		context = #{context}
+  		title = #{title}
+  	WHERE 
+  		p_num = #{p_num}
+  </update>
+  
   
   <!-- S E L E C T -->
   
@@ -71,6 +83,19 @@
 	 FROM schedule_project
 	 WHERE p_num = #{p_num} and deldate is NULL
   </select>
+  
+  <!--selectContext 정광철  -->
+  <select id="selectContext" parameterType="String" resultType="Context">
+  	SELECT
+  		p_num
+  		,context
+  		,title
+  	FROM  
+  		context
+  	WHERE
+  		p_num = #{p_num}	
+  
+  </select>
   	
   <!-- I N S E R T -->
  
@@ -103,6 +128,21 @@
   	)VALUES(
   		#{p_num}, #{n_content}
   	)
+  </insert>
+  
+  <insert id="insertContext" parameterType="Context">
+  	INSER INTO
+  	 	context(
+  	 	p_num
+  	 	,context
+  	 	,title
+ 	)VALUES(
+ 		#{p_num}
+ 		,#{context}
+ 		,#{title}
+ 	)
+  
+  
   </insert>
   
   

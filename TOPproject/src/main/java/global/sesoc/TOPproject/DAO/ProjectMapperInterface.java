@@ -2,6 +2,7 @@ package global.sesoc.TOPproject.DAO;
  
 import java.util.ArrayList;
 
+import global.sesoc.TOPproject.VO.Context;
 import global.sesoc.TOPproject.VO.Memo;
 import global.sesoc.TOPproject.VO.Notice;
 import global.sesoc.TOPproject.VO.Project;
@@ -31,5 +32,15 @@ public interface ProjectMapperInterface {
 	
 	//PM 불러오기
 	public String selectPm(String p_num);
+	
+	//context저장
+	public void upDateContext(Context context);
+	
+	//context 불러오기
+	public Context selectContext(String p_num);
+	
+	//context 생성
+	public void insertContext(Context context);
+	
 	
 }

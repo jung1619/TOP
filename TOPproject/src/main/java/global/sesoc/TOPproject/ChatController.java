@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import global.sesoc.TOPproject.DAO.ProjectDAO;
+import global.sesoc.TOPproject.VO.Context;
 import global.sesoc.TOPproject.VO.Message;
 import global.sesoc.TOPproject.VO.User;
 
@@ -47,6 +48,39 @@ public class ChatController {
 		logger.info("채팅컨트롤러 종료");
 		return message;
 	}
+	
+	@MessageMapping("/chat/{p_num}/context")
+	@SendTo("/subscribe/chat/{p_num}/context")
+	public Context sendContext(@DestinationVariable("p_num") String p_num,Context context){
+		
+		logger.info("context시작");
+		context.setP_num(p_num);
+		logger.info("chatcotroller에서 받음+p_num추가: "+context);
+		
+		
+		if(projectDAO.selectContext(p_num)!=null){
+			//임시 제목
+			context.setTitle("title");
+			logger.info("new context="+context);
+			
+			//context가 없을 경우 생성 
+			projectDAO.insertContext(context);
+			
+			
+		}else{
+			//context가 있으면 update함 
+			projectDAO.upDateContext(context);
+		}
+		
+		//여기서 저장한것을 다시 불러옴 context를 새롭게 불러온겁니다.
+		logger.info("selectContext parameter P_num in ChatController = "+p_num);
+		context = projectDAO.selectContext(p_num);
+		
+		return context;
+	}
+	
+	
+	
 	
 	
 }

@@ -20,11 +20,19 @@
 		var editor = CKEDITOR.instances.editor1;
 		
 		editor.on('change',function(evt){
-			var context = $("#editor1").val();
-			console.log(context);
-			
-			alert("가즈아!");
+			sendContext();			
 		})
+		
+		
+		/* 추가 */
+		function sendContext(){
+			var context = CKEDITOR.instances.editor1.getData();
+			console.log("끌어올림:"+context);
+			
+			stompClient.send("/chat/${p_num}/context",{}, JSON.stringify({
+						context :context		
+			}))	;
+		}
 		
 			
 		});
