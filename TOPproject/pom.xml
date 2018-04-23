@@ -41,6 +41,81 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
+		<!-- poi 오류로 설치한 애 (2007 이상 파일 저장 불가능할 때 -->
+	<dependency>
+	    <groupId>org.apache.commons</groupId>
+	    <artifactId>commons-collections4</artifactId>
+	    <version>4.1</version>
+	</dependency>
+		
+	<dependency>
+	    <groupId>org.apache.pdfbox</groupId>
+	    <artifactId>pdfbox-tools</artifactId>
+	    <version>2.0.3</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.apache.pdfbox</groupId>
+	    <artifactId>pdfbox</artifactId>
+	    <version>2.0.3</version>
+	</dependency>
+
+	<dependency>
+	    <groupId>net.sf.cssbox</groupId>
+	    <artifactId>pdf2dom</artifactId>
+	    <version>1.6</version>
+	</dependency>
+		
+	<dependency>
+	    <groupId>com.itextpdf</groupId>
+	    <artifactId>itextpdf</artifactId>
+	    <version>5.5.10</version>
+	</dependency>
+	<dependency>
+	    <groupId>com.itextpdf.tool</groupId>
+	    <artifactId>xmlworker</artifactId>
+	    <version>5.5.10</version>
+	</dependency>	
+	
+	<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+	<dependency>
+	    <groupId>org.apache.poi</groupId>
+	    <artifactId>poi-ooxml</artifactId>
+	    <version>3.17</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml-schemas -->
+	<dependency>
+	    <groupId>org.apache.poi</groupId>
+	    <artifactId>poi-ooxml-schemas</artifactId>
+	    <version>3.17</version>
+	</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi</artifactId>
+		    <version>3.17</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.docx4j/docx4j -->
+		<dependency>
+		    <groupId>org.docx4j</groupId>
+		    <artifactId>docx4j</artifactId>
+		    <version>3.3.7</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.docx4j/docx4j-ImportXHTML -->
+		<dependency>
+		    <groupId>org.docx4j</groupId>
+		    <artifactId>docx4j-ImportXHTML</artifactId>
+		    <version>3.3.6-1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		    <version>2.8.2</version>
+		</dependency>
 				
 		<!-- AspectJ -->
 		<dependency>
